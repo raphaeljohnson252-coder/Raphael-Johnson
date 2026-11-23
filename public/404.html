@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Ewixstudio</title>
+    <script>
+      (function () {
+        var l = window.location;
+        var pathParts = l.pathname.split('/').filter(Boolean);
+        var baseSegment = pathParts.length > 0 && pathParts[0] === 'Ewix' ? '/Ewix' : '';
+        var routePath = l.pathname.slice(baseSegment.length) || '/';
+        var target =
+          l.protocol +
+          '//' +
+          l.hostname +
+          (l.port ? ':' + l.port : '') +
+          baseSegment +
+          '/?p=' +
+          encodeURIComponent(routePath + l.search) +
+          l.hash;
+        l.replace(target);
+      })();
+    </script>
+  </head>
+  <body></body>
+</html>
