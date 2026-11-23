@@ -14,7 +14,6 @@ import {
   StaggerItem,
 } from '../components/LuxuryMotion';
 import { PageHeroBackdrop } from '../components/PageHeroBackdrop';
-import { SeoHeroLivePreview } from '../components/SeoHeroLivePreview';
 import { SeoRealTimeExamples } from '../components/SeoRealTimeExamples';
 import {
   buildEmailUrl,
@@ -27,13 +26,13 @@ const PILLARS = [
   {
     index: '01',
     title: 'Google SEO',
-    subtitle: 'Search Engine Optimization',
+    subtitle: 'Search & Google Maps',
     description:
-      'Put your business on page one when ready-to-buy clients search Google and Google Maps for what you offer.',
+      'We set up your website structure, page titles, speed, and Google Business alignment so people searching Google for your service can find you.',
     points: [
-      'High-intent service & local/global keyword targeting',
-      'Technical page speed, mobile indexing & clean URL architecture',
-      'Google Business Profile & map-pack authority alignment',
+      'Service and location keywords built into page titles and headings',
+      'Clean mobile-friendly layout, fast load time, and proper indexing',
+      'Google Business Profile guidance to help you show up on Maps',
     ],
   },
   {
@@ -41,11 +40,11 @@ const PILLARS = [
     title: 'GEO',
     subtitle: 'Generative Engine Optimization',
     description:
-      'Position your brand so AI search engines—ChatGPT, Gemini, Perplexity, and Google AI Overviews—cite and recommend your business.',
+      'More buyers now ask ChatGPT, Gemini, Perplexity, and Google AI Overviews who to hire. We structure your site so AI tools can accurately read and mention your business.',
     points: [
-      'Entity clarity so AI models understand exactly who you serve',
-      'Structured proof, verifiable facts & authoritative service pages',
-      'Brand consistency across your site and public profiles',
+      'Plain, factual service pages instead of vague filler text',
+      'Structured Organization and Service data AI crawlers understand',
+      'Consistent business details across your website and public listings',
     ],
   },
   {
@@ -53,44 +52,44 @@ const PILLARS = [
     title: 'AEO',
     subtitle: 'Answer Engine Optimization',
     description:
-      'Win direct answers, featured snippets, and voice searches by answering the exact questions decision-makers ask before booking.',
+      'We write and mark up clear answers to the real questions clients ask before they book—giving your site a real shot at Featured Snippets and People Also Ask boxes.',
     points: [
-      'Question-led content hierarchy & concise answer blocks',
-      'Schema.org JSON-LD markup (Service, FAQ, Organization & Local)',
-      'Clear conversion paths from search answer directly to enquiry',
+      'Question-led headings based on what real customers ask',
+      'Short, direct 40–60 word answers written in plain English',
+      'Valid FAQPage schema with clear enquiry buttons right underneath',
     ],
   },
 ];
 
 const INCLUDED = [
-  'Complete website & search visibility audit covering Google Search, Maps, and AI answer engines',
-  'On-page Google SEO setup: titles, meta descriptions, heading hierarchy, internal links, and image alt tags',
-  'Schema.org structured data (JSON-LD) built for Google Rich Results and generative AI crawlers',
-  'GEO & AEO copy structuring so high-value prospects find clear answers and trust your authority immediately',
-  'Google Business Profile optimization guidance to improve local and regional map rankings',
-  'Clean sitemap, robots.txt, and Google Search Console indexing readiness',
+  'A straight, honest review of your current website and how it appears on Google and AI search tools',
+  'On-page Google SEO setup: titles, meta descriptions, headings, internal links, and image alt text',
+  'Clean Schema.org JSON-LD markup (Organization, Service, LocalBusiness, and FAQPage)',
+  'GEO & AEO copy improvements so both people and AI search engines understand what you offer immediately',
+  'Practical Google Business Profile improvements for local search and Maps visibility',
+  'Clean sitemap, robots.txt, and Google Search Console indexing setup',
 ];
 
 const PROCESS_STEPS = [
   {
     number: '01',
     title: 'Free visibility check',
-    text: 'Share your website or business name. We inspect where you currently appear on Google and AI answer engines and show you the biggest missed opportunities.',
+    text: 'Send us your website link or business name. We check how you currently show up on Google and reply with the clearest fixes we can make.',
   },
   {
     number: '02',
-    title: 'High-value search mapping',
-    text: 'We identify the exact search terms and questions higher-tier clients use right before they book, enquire, or purchase.',
+    title: 'Search & question mapping',
+    text: 'We list the exact services, locations, and pre-booking questions your ideal clients actually type when looking for a business like yours.',
   },
   {
     number: '03',
-    title: 'SEO, GEO & AEO buildout',
-    text: 'We implement technical SEO, structured schema data, authoritative service copy, and answer-ready sections across your site.',
+    title: 'Hands-on setup',
+    text: 'We update your page titles, descriptions, headings, structured schema code, answer sections, and indexing files directly on your site.',
   },
   {
     number: '04',
-    title: 'Rank, measure & refine',
-    text: 'We submit your updated structure for fast indexing and remain available for ongoing ranking improvements as your business grows.',
+    title: 'Submit & hand over',
+    text: 'We submit your updated pages to Google Search Console and walk you through everything we changed in plain language.',
   },
 ];
 
@@ -98,21 +97,21 @@ const QUESTIONS: FaqItem[] = [
   {
     question: 'What is the difference between Google SEO, GEO, and AEO?',
     answer:
-      'Google SEO helps your website rank higher in traditional Google Search and Google Maps results. GEO (Generative Engine Optimization) helps your business get cited and recommended inside AI tools like ChatGPT, Gemini, Perplexity, and Google AI Overviews. AEO (Answer Engine Optimization) structures your pages to win featured snippets, People Also Ask boxes, and direct voice answers.',
+      'Google SEO helps your website show up higher in Google Search and Google Maps. GEO (Generative Engine Optimization) helps AI tools like ChatGPT, Gemini, Perplexity, and Google AI Overviews understand and mention your business. AEO (Answer Engine Optimization) structures clear answers on your pages so Google can feature them directly in search and voice results.',
   },
   {
-    question: 'How does this make my business visible to higher-value clients?',
+    question: 'Are the examples on this page past clients?',
     answer:
-      'Decision-makers and higher-budget buyers rarely scroll past the first few Google results or the top AI-recommended providers. By aligning your technical SEO, authority signals, and clear service answers with high-intent search queries, your business shows up at the exact moment serious buyers are comparing options.',
+      'No—the examples above are sample previews showing the exact before-and-after setup we build for a business website. Every real project is tailored to your own business name, services, location, and customers.',
   },
   {
     question: 'How much does Google SEO, GEO & AEO cost?',
-    answer: `Starting from ${SERVICE_PRICES.seo}. After a free visibility check and short email exchange, we send a fixed quote based on the size of your website and goals. Prices in US dollars.`,
+    answer: `Starting from ${SERVICE_PRICES.seo}. After checking your website and chatting briefly by email, we send a clear fixed quote based on how many pages you have and what needs work. Prices in US dollars.`,
   },
   {
-    question: 'Can you optimize a website we already have?',
+    question: 'Can you work on a website I already have?',
     answer:
-      'Yes. We can optimize your existing website directly, or combine SEO, GEO, and AEO with a fresh website build so your design and search rankings work together from day one.',
+      'Yes. We can set up SEO, GEO, and AEO on your existing website, or build it directly into a new website from the start.',
   },
 ];
 
@@ -120,7 +119,7 @@ export function SeoGeoAeoPage() {
   const emailUrl = buildEmailUrl('seo');
 
   const scrollToExamples = () => {
-    const el = document.getElementById('real-time-examples');
+    const el = document.getElementById('setup-examples');
     if (el) {
       el.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
@@ -135,90 +134,84 @@ export function SeoGeoAeoPage() {
           intervalMs={5500}
         />
         <div className="relative mx-auto max-w-6xl px-4 pt-14 pb-18 sm:px-6 sm:pt-22 sm:pb-24 lg:px-8">
-          <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-12 lg:gap-12">
-            <HeroEntrance className="space-y-6 lg:col-span-6">
-              <ParallaxText>
-                <p className="font-mono-data text-xs tracking-wider text-champagne-deep uppercase dark:text-champagne-light">
-                  {BUSINESS_NAME} &middot; Search &amp; AI Visibility
-                </p>
-              </ParallaxText>
-              <SplitHeadline
-                text="Google SEO, GEO & AEO that gets your business visible and ranked"
-                className="font-display text-3xl font-bold tracking-tight text-ink text-balance sm:text-5xl sm:leading-[1.08] dark:text-[#F5F4F0]"
-              />
-              <ParallaxText>
-                <p className="max-w-xl text-base leading-relaxed text-ink-muted sm:text-lg dark:text-[#C8C6BE]">
-                  We help businesses rank higher on Google and appear in AI-powered search answers—putting your brand in front of higher-value clients and decision-makers actively looking for what you offer.
-                </p>
-              </ParallaxText>
-              <ParallaxText>
-                <div className="flex flex-wrap items-center gap-3.5 pt-2">
-                  <MagneticWrap>
-                    <RouteLink
-                      to="/contact"
-                      service="Google SEO, GEO & AEO"
-                      className="luxury-shimmer-btn inline-flex min-h-11 items-center justify-center rounded-lg bg-champagne px-6 py-3 text-sm font-semibold text-obsidian whitespace-nowrap shrink-0 transition-all duration-150 hover:bg-champagne-light active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-champagne"
-                    >
-                      Get a free visibility check
-                    </RouteLink>
-                  </MagneticWrap>
-                  <button
-                    type="button"
-                    onClick={scrollToExamples}
-                    className="inline-flex min-h-11 items-center justify-center rounded-lg border border-ivory-border bg-white/90 px-6 py-3 text-sm font-medium text-ink whitespace-nowrap shrink-0 transition-all duration-200 hover:-translate-y-0.5 hover:border-champagne hover:text-champagne-deep focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-champagne dark:border-obsidian-border-strong dark:bg-obsidian-surface/85 dark:text-[#F5F4F0] dark:hover:border-champagne-light dark:hover:text-champagne-light"
+          <HeroEntrance className="max-w-3xl space-y-6">
+            <ParallaxText>
+              <p className="font-mono-data text-xs tracking-wider text-champagne-deep uppercase dark:text-champagne-light">
+                {BUSINESS_NAME} &middot; Google SEO, GEO &amp; AEO
+              </p>
+            </ParallaxText>
+            <SplitHeadline
+              text="Help the right clients find your business on Google and AI search"
+              className="font-display text-3xl font-bold tracking-tight text-ink text-balance sm:text-5xl sm:leading-[1.08] dark:text-[#F5F4F0]"
+            />
+            <ParallaxText>
+              <p className="max-w-2xl text-base leading-relaxed text-ink-muted sm:text-lg dark:text-[#C8C6BE]">
+                We set up your website&apos;s technical SEO, clear service structure, and structured data so your business is easier to find, trust, and rank on Google, Google Maps, and AI search tools.
+              </p>
+            </ParallaxText>
+            <ParallaxText>
+              <div className="flex flex-wrap items-center gap-3.5 pt-2">
+                <MagneticWrap>
+                  <RouteLink
+                    to="/contact"
+                    service="Google SEO, GEO & AEO"
+                    className="luxury-shimmer-btn inline-flex min-h-11 items-center justify-center rounded-lg bg-champagne px-6 py-3 text-sm font-semibold text-obsidian whitespace-nowrap shrink-0 transition-all duration-150 hover:bg-champagne-light active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-champagne"
                   >
-                    See ranking examples
-                  </button>
-                </div>
-              </ParallaxText>
-            </HeroEntrance>
-
-            <HeroEntrance delay={0.14} parallaxOffset={-14} className="lg:col-span-6">
-              <SeoHeroLivePreview />
-            </HeroEntrance>
-          </div>
+                    Get a free visibility check
+                  </RouteLink>
+                </MagneticWrap>
+                <button
+                  type="button"
+                  onClick={scrollToExamples}
+                  className="inline-flex min-h-11 cursor-pointer items-center justify-center rounded-lg border border-ivory-border bg-white/90 px-6 py-3 text-sm font-medium text-ink whitespace-nowrap shrink-0 transition-all duration-200 hover:-translate-y-0.5 hover:border-champagne hover:text-champagne-deep focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-champagne dark:border-obsidian-border-strong dark:bg-obsidian-surface/85 dark:text-[#F5F4F0] dark:hover:border-champagne-light dark:hover:text-champagne-light"
+                >
+                  See examples of what we set up
+                </button>
+              </div>
+            </ParallaxText>
+          </HeroEntrance>
         </div>
       </section>
 
-      {/* Real-Time Client Examples Across Industries */}
+      {/* Examples of What We Will Set Up */}
       <section
-        id="real-time-examples"
+        id="setup-examples"
         className="scroll-mt-20 border-t border-ivory-border bg-white dark:border-obsidian-border dark:bg-obsidian-surface"
       >
         <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
           <RevealBlock className="flex flex-col justify-between gap-3 sm:flex-row sm:items-end">
             <div className="space-y-2">
               <p className="font-mono-data text-xs tracking-wider text-champagne-deep uppercase dark:text-champagne-light">
-                Before &amp; after search proof
+                What we will set up for you
               </p>
               <h2 className="font-display text-2xl font-bold tracking-tight text-ink text-balance sm:text-3xl dark:text-[#F5F4F0]">
-                Real-time ranking examples across industries
+                Examples of how we improve your search presence
               </h2>
               <p className="max-w-2xl text-base text-ink-muted dark:text-[#C8C6BE]">
-                Inspect actual Google Search, Google Maps, AI Overview (GEO), and Featured Snippet (AEO) examples with exact ranking shifts, timelines, and technical deliverables.
+                Here is what a typical unoptimized website looks like compared to how we structure yours for Google Search, Google Maps, AI recommendations (GEO), and direct answers (AEO).
               </p>
             </div>
           </RevealBlock>
 
-          <RevealBlock delay={0.06} className="mt-10">
+          <RevealBlock delay={0.04} className="mt-10">
             <SeoRealTimeExamples />
           </RevealBlock>
         </div>
       </section>
 
-      {/* Three Pillars: Google SEO, GEO & AEO */}
+      {/* Three Layers: Google SEO, GEO & AEO */}
       <section
         id="visibility-pillars"
-        className="scroll-mt-20 border-t border-ivory-border bg-ivory dark:border-obsidian-border dark:bg-obsidian"
+        className="cv-auto scroll-mt-20 border-t border-ivory-border bg-ivory dark:border-obsidian-border dark:bg-obsidian"
       >
         <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
           <RevealBlock className="flex flex-col justify-between gap-3 sm:flex-row sm:items-end">
             <div className="space-y-2">
               <h2 className="font-display text-2xl font-bold tracking-tight text-ink text-balance sm:text-3xl dark:text-[#F5F4F0]">
-                Three layers of modern visibility
+                What Google SEO, GEO &amp; AEO cover
               </h2>
               <p className="max-w-2xl text-base text-ink-muted dark:text-[#C8C6BE]">
-                Clients no longer search in just one place. We optimize your presence across Google Search, AI assistants, and direct answer engines together.
+                In plain terms, here are the three areas we work on so your business is easier to find wherever people search.
               </p>
             </div>
           </RevealBlock>
@@ -265,7 +258,7 @@ export function SeoGeoAeoPage() {
       </section>
 
       {/* What's Included & Pricing */}
-      <section className="border-t border-ivory-border bg-white dark:border-obsidian-border dark:bg-obsidian-surface">
+      <section className="cv-auto border-t border-ivory-border bg-white dark:border-obsidian-border dark:bg-obsidian-surface">
         <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
           <RevealBlock>
             <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-12">
@@ -299,7 +292,7 @@ export function SeoGeoAeoPage() {
                     <span className="font-mono-data font-semibold text-ink dark:text-champagne-light">
                       {SERVICE_PRICES.seo}
                     </span>
-                    . Send us your website or business name for a free visibility review, followed by a clear fixed quote with no hidden retainers.
+                    . Send us your website link or business name—we&apos;ll review it for free and reply with a clear fixed quote and no hidden monthly retainers.
                   </p>
                   <p className="text-xs text-ink-muted dark:text-[#96948C]">
                     Prices in US dollars.
@@ -330,14 +323,14 @@ export function SeoGeoAeoPage() {
       </section>
 
       {/* Process */}
-      <section className="border-t border-ivory-border bg-ivory dark:border-obsidian-border dark:bg-obsidian">
+      <section className="cv-auto border-t border-ivory-border bg-ivory dark:border-obsidian-border dark:bg-obsidian">
         <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
           <RevealBlock className="flex flex-col justify-between gap-3 sm:flex-row sm:items-end">
             <h2 className="font-display text-2xl font-bold tracking-tight text-ink text-balance sm:text-3xl dark:text-[#F5F4F0]">
-              How we rank your business
+              How we work
             </h2>
             <p className="font-editorial text-lg italic text-ink-muted dark:text-[#C8C6BE]">
-              Clear steps built for long-term search and AI visibility
+              Straightforward steps from review to setup
             </p>
           </RevealBlock>
 
@@ -362,7 +355,7 @@ export function SeoGeoAeoPage() {
       </section>
 
       {/* Questions & Cross-links */}
-      <section className="border-t border-ivory-border bg-white dark:border-obsidian-border dark:bg-obsidian-surface">
+      <section className="cv-auto border-t border-ivory-border bg-white dark:border-obsidian-border dark:bg-obsidian-surface">
         <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
           <RevealBlock className="max-w-3xl">
             <h2 className="font-display text-2xl font-bold tracking-tight text-ink dark:text-[#F5F4F0]">

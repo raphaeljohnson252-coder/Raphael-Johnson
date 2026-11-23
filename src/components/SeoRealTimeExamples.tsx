@@ -1,200 +1,116 @@
 import { useState } from 'react';
-import {
-  ArrowRight,
-  Check,
-  MapPin,
-  Search,
-  Sparkles,
-} from 'lucide-react';
+import { ArrowRight, Check, MapPin, Search, Sparkles } from 'lucide-react';
 import { RouteLink } from '../router';
 
 type ExampleCategory = 'All' | 'Google SEO' | 'GEO' | 'AEO';
 
-interface RealTimeCaseExample {
+interface ServiceSetupExample {
   id: string;
-  businessName: string;
-  industry: string;
-  location: string;
+  businessType: string;
   primaryLayer: Exclude<ExampleCategory, 'All'>;
-  layersLabel: string;
-  queryType: 'Google Search' | 'AI Search Prompt' | 'Voice & Answer Query';
-  query: string;
-  domain: string;
-  beforePosition: string;
-  afterPosition: string;
-  timeframe: string;
-  measuredOutcome: string;
-  beforePreviewTitle: string;
-  beforePreviewBody: string;
-  afterPreviewTitle: string;
-  afterPreviewBody: string;
-  afterMetaNote: string;
-  workApplied: string[];
+  layerLabel: string;
+  searchQuery: string;
+  exampleDomain: string;
+  typicalTitle: string;
+  typicalDescription: string;
+  typicalProblem: string;
+  setupTitle: string;
+  setupDescription: string;
+  setupHighlight: string;
+  whatWeWillDo: string[];
 }
 
-const REAL_TIME_CASE_EXAMPLES: RealTimeCaseExample[] = [
+const SETUP_EXAMPLES: ServiceSetupExample[] = [
   {
-    id: 'biscayne-preventive-miami',
-    businessName: 'Biscayne Preventive Health',
-    industry: 'Preventive Medicine Clinic',
-    location: 'Miami, USA',
+    id: 'clinic-google-seo',
+    businessType: 'Local Clinic or Health Practice',
     primaryLayer: 'Google SEO',
-    layersLabel: 'Google SEO · Maps Pack',
-    queryType: 'Google Search',
-    query: 'preventive health clinic Miami online booking',
-    domain: 'biscaynepreventive.com',
-    beforePosition: 'Page 3 (#24)',
-    afterPosition: 'Page 1 (#1)',
-    timeframe: '6 weeks',
-    measuredOutcome: '+185% organic appointment clicks in 90 days',
-    beforePreviewTitle: 'Home | Biscayne Health',
-    beforePreviewBody:
-      'Welcome to Biscayne Preventive Health. Call our office during business hours to learn about services...',
-    afterPreviewTitle:
-      'Biscayne Preventive Health — Miami Checkups & Online Booking',
-    afterPreviewBody:
-      'Preventive medicine, executive health panels, and same-week appointments in Miami. See clinic hours, accepted plans, and book directly online.',
-    afterMetaNote: '4.9 ★ (52 reviews) · Top 3 Google Maps Pin · Sitelinks live',
-    workApplied: [
-      'City + service title tags & clean URL structure',
-      'MedicalClinic JSON-LD & Google Maps category alignment',
-      'Mobile speed optimization (<1.4s LCP)',
+    layerLabel: 'Google SEO & Maps',
+    searchQuery: 'diabetes clinic near me online booking',
+    exampleDomain: 'yourclinic.com',
+    typicalTitle: 'Home | Clinic Name',
+    typicalDescription:
+      'Welcome to our website. Contact us for more information about our services and opening hours...',
+    typicalProblem:
+      'Vague page title, no service keywords, no location signal, and an incomplete Google Maps listing.',
+    setupTitle: 'Your Clinic Name — Diabetes Care, Checkups & Online Booking',
+    setupDescription:
+      'Specialist care, routine screening, accepted insurance/HMO details, clinic hours, and simple online appointment booking in your city.',
+    setupHighlight:
+      'Clean service + city page title · Google Business Profile & Maps details aligned · Clear booking links',
+    whatWeWillDo: [
+      'Write clear page titles and meta descriptions around the exact services and city you serve',
+      'Clean up your headings, URLs, internal links, and mobile loading speed',
+      'Align your website details with your Google Business Profile for stronger Maps visibility',
     ],
   },
   {
-    id: 'ikeja-diabetes-lagos',
-    businessName: 'Ikeja Endocrine & Diabetes Clinic',
-    industry: 'Diabetes & Metabolic Care',
-    location: 'Lagos, Nigeria',
+    id: 'service-business-seo',
+    businessType: 'Real Estate, Legal, or Service Business',
     primaryLayer: 'Google SEO',
-    layersLabel: 'Google SEO · AEO',
-    queryType: 'Google Search',
-    query: 'diabetes specialist clinic in Ikeja HMO',
-    domain: 'ikejaendocrine.com',
-    beforePosition: 'Page 2 (#19)',
-    afterPosition: 'Page 1 (#1)',
-    timeframe: '5 weeks',
-    measuredOutcome: '3.4× increase in qualified patient booking enquiries',
-    beforePreviewTitle: 'Ikeja Clinic - Medical Services',
-    beforePreviewBody:
-      'We offer medical services in Lagos. Send a message on WhatsApp for clinic hours and location...',
-    afterPreviewTitle:
-      'Ikeja Endocrine & Diabetes Clinic — Screening, HMO & Booking',
-    afterPreviewBody:
-      'Structured diabetes care, HbA1c reviews, and specialist consultations in Ikeja. Check accepted HMOs, consultation hours, and book your first visit.',
-    afterMetaNote: '4.9 ★ (38 reviews) · Map Pack #1 in Ikeja',
-    workApplied: [
-      'Dedicated HMO, screening & first-visit service pages',
-      'LocalBusiness + Physician structured markup',
-      'Clear click-to-book & WhatsApp conversion path',
+    layerLabel: 'Google SEO Structure',
+    searchQuery: 'verified property advisor in [your city]',
+    exampleDomain: 'yourbusiness.com',
+    typicalTitle: 'Your Business — Official Site',
+    typicalDescription:
+      'We provide quality services to clients. Reach out to our team today to discuss your needs...',
+    typicalProblem:
+      'Everything crammed onto one generic homepage with no dedicated pages for core services or target areas.',
+    setupTitle: 'Your Business — Core Service & Advisory in [Your City]',
+    setupDescription:
+      'Dedicated service pages explaining what you offer, who you help, how your process works, and how serious clients can request a consultation.',
+    setupHighlight:
+      'Dedicated service pages · Clean sitemap & Google Search Console indexing · Structured business markup',
+    whatWeWillDo: [
+      'Map out the high-intent search terms serious buyers type right before enquiring',
+      'Structure separate, focused pages for your main services instead of burying everything on one page',
+      'Set up clean sitemap.xml, robots.txt, and Google Search Console so new pages index properly',
     ],
   },
   {
-    id: 'noor-botanicals-geo',
-    businessName: 'Noor Botanicals Skincare',
-    industry: 'Online Skincare Store',
-    location: 'Abuja & London',
+    id: 'brand-geo-ai-search',
+    businessType: 'Online Store or Specialist Brand',
     primaryLayer: 'GEO',
-    layersLabel: 'GEO · AI Overview & ChatGPT',
-    queryType: 'AI Search Prompt',
-    query: 'clean botanical hydration cream for sensitive skin shipping to Abuja and UK',
-    domain: 'noorbotanicals.com',
-    beforePosition: '0 AI citations',
-    afterPosition: 'Cited #1 in AI Answer',
-    timeframe: '4 weeks',
-    measuredOutcome: '+140% organic store checkouts in 60 days',
-    beforePreviewTitle: 'AI Search Answer (Before GEO)',
-    beforePreviewBody:
-      'Lists 4 global mass-market skincare brands. Noor Botanicals is omitted because ingredient lists and shipping zones were embedded only inside images.',
-    afterPreviewTitle: 'Google AI Overview & ChatGPT Recommendation [1]',
-    afterPreviewBody:
-      'Noor Botanicals is recommended for fragrance-free botanical hydration formulated for sensitive skin, with published ingredient breakdowns and tracked Abuja & UK delivery.',
-    afterMetaNote: 'Primary [1] source link · Product & Offer schema verified',
-    workApplied: [
-      'Entity-rich product pages readable by AI crawlers',
-      'Product, Offer & AggregateRating JSON-LD markup',
-      'Plain-language ingredient & shipping verification tables',
+    layerLabel: 'GEO · AI Search Visibility',
+    searchQuery: 'best [your product or service] that delivers to [your region]',
+    exampleDomain: 'yourbrand.com',
+    typicalTitle: 'How AI tools see an unoptimized site',
+    typicalDescription:
+      'AI tools like ChatGPT, Gemini, and Google AI Overviews skip the brand because key facts—what you sell, pricing, delivery regions, and credentials—are vague or trapped inside images.',
+    typicalProblem:
+      'No plain-text facts or structured entity schema for AI models to read and trust.',
+    setupTitle: 'How we structure your site for AI recommendations',
+    setupDescription:
+      'Your site states clearly in readable text and structured data who you are, what you offer, where you serve, and why clients trust you—making it easy for AI search tools to understand and reference your business.',
+    setupHighlight:
+      'Readable service/product facts · Organization & Service JSON-LD schema · Consistent public brand info',
+    whatWeWillDo: [
+      'Install clean JSON-LD schema (Organization, Service, or Product) so AI crawlers read your business accurately',
+      'Replace vague filler copy with clear, factual descriptions of your offers, locations, and process',
+      'Keep your business name, description, and contact details consistent across your site and profiles',
     ],
   },
   {
-    id: 'harbourview-dental-aeo',
-    businessName: 'Harbourview Dental Studio',
-    industry: 'Cosmetic & Implant Dentistry',
-    location: 'Austin, USA',
+    id: 'booking-aeo-direct-answer',
+    businessType: 'Clinic, Consultant, or Appointment Business',
     primaryLayer: 'AEO',
-    layersLabel: 'AEO · Position Zero Snippet',
-    queryType: 'Voice & Answer Query',
-    query: 'how long does a dental implant consultation take in Austin',
-    domain: 'harbourviewdental.com',
-    beforePosition: 'No answer box',
-    afterPosition: 'Position 0 Snippet',
-    timeframe: '4 weeks',
-    measuredOutcome: '+62% implant & Invisalign consultation requests',
-    beforePreviewTitle: 'Generic national health blog owns Position Zero',
-    beforePreviewBody:
-      'High-intent Austin patients read an out-of-state article and never see Harbourview Dental Studio’s timeline or booking button.',
-    afterPreviewTitle: 'Featured Answer · Harbourview Dental Studio (Austin)',
-    afterPreviewBody:
-      'An implant consultation takes 45 minutes, including a 3D digital scan, bone-health check, and a written treatment timeline with clear financing options.',
-    afterMetaNote: 'Owns Featured Snippet + 3 People Also Ask boxes',
-    workApplied: [
-      '45-word direct answer blocks targeting buyer questions',
-      'Validated FAQPage & Dentist JSON-LD schema',
-      'Direct booking link placed immediately below answers',
-    ],
-  },
-  {
-    id: 'vanguard-island-realty-geo',
-    businessName: 'Vanguard Island Realty',
-    industry: 'Luxury Real Estate Advisory',
-    location: 'Victoria Island, Lagos',
-    primaryLayer: 'GEO',
-    layersLabel: 'GEO · High-Value Buyer Search',
-    queryType: 'AI Search Prompt',
-    query: 'reliable real estate advisor Victoria Island verified title diaspora buyers',
-    domain: 'vanguardislandrealty.com',
-    beforePosition: 'Not listed by AI',
-    afterPosition: 'Cited #1 in Shortlist',
-    timeframe: '7 weeks',
-    measuredOutcome: '11 direct diaspora investor dossiers requested in 60 days',
-    beforePreviewTitle: 'AI Search Answer (Before GEO)',
-    beforePreviewBody:
-      'Suggests generic listing aggregators and warns buyers to verify titles independently—Vanguard Island Realty is not mentioned.',
-    afterPreviewTitle: 'AI Shortlist Citation [1] · Vanguard Island Realty',
-    afterPreviewBody:
-      'Vanguard Island Realty is cited for documented title-verification steps, unedited apartment walkthroughs, and dedicated legal coordination for overseas buyers in Victoria Island and Ikoyi.',
-    afterMetaNote: 'Cited in Perplexity, Gemini & Google AI Overviews',
-    workApplied: [
-      'RealEstateAgent entity graph & neighbourhood hubs',
-      'Structured buyer due-diligence & title verification guide',
-      'Verified listing specs without misleading edits',
-    ],
-  },
-  {
-    id: 'nourish-balance-aeo',
-    businessName: 'Nourish Balance Nutrition',
-    industry: 'Dietetics & Telehealth',
-    location: 'Melbourne, Australia',
-    primaryLayer: 'AEO',
-    layersLabel: 'AEO · People Also Ask',
-    queryType: 'Voice & Answer Query',
-    query: 'how does a telehealth dietitian consultation work in Australia',
-    domain: 'nourishbalancenutrition.com.au',
-    beforePosition: 'Page 2 (#15)',
-    afterPosition: 'Position 0 + Page 1 (#2)',
-    timeframe: '5 weeks',
-    measuredOutcome: '+78% booked telehealth intakes, -45% basic phone queries',
-    beforePreviewTitle: 'Competitor directory ranks above clinic page',
-    beforePreviewBody:
-      'Patients searching how telehealth nutrition works click aggregator sites instead of booking directly with Nourish Balance.',
-    afterPreviewTitle: 'Direct Answer · Nourish Balance Nutrition',
-    afterPreviewBody:
-      'A telehealth dietitian visit runs over secure video using your recent health notes, daily meal rhythm, and approved clinical goals—with Medicare/private-health receipts issued right after.',
-    afterMetaNote: 'Compliant clinical wording · Position 0 answer captured',
-    workApplied: [
-      'Question-led H2 headings written in approved clinical wording',
-      'FAQPage & MedicalOrganization structured schema',
-      'Fast mobile telehealth booking pathway',
+    layerLabel: 'AEO · Direct Search Answers',
+    searchQuery: 'how does [your service] work and what does it cost?',
+    exampleDomain: 'yourpractice.com',
+    typicalTitle: 'How Google handles missing answers',
+    typicalDescription:
+      'When prospects search practical pre-booking questions, Google pulls answers from generic third-party blogs because your website never answers those questions directly.',
+    typicalProblem:
+      'Important client questions are missing or buried inside long, unstructured paragraphs.',
+    setupTitle: 'Direct answer block built on your own website',
+    setupDescription:
+      'A clear 40–60 word plain-English answer explaining what happens during a first visit, typical turnaround, and how to book—paired with FAQ schema so Google can surface your answer directly.',
+    setupHighlight:
+      'Built for Featured Snippets & People Also Ask · FAQPage schema installed · Direct enquiry link below each answer',
+    whatWeWillDo: [
+      'Turn your clients’ real pre-booking questions into clear H2/H3 sections on your key pages',
+      'Write short, straightforward 40–60 word direct answers Google and voice search can easily pull',
+      'Add valid FAQPage structured data and place a clear contact or booking link right beneath the answers',
     ],
   },
 ];
@@ -224,17 +140,19 @@ function GoogleSmallMark() {
 
 export function SeoRealTimeExamples() {
   const [category, setCategory] = useState<ExampleCategory>('All');
-  const [beforeMap, setBeforeMap] = useState<Record<string, boolean>>({});
+  const [typicalViewMap, setTypicalViewMap] = useState<Record<string, boolean>>(
+    {}
+  );
 
   const categories: ExampleCategory[] = ['All', 'Google SEO', 'GEO', 'AEO'];
 
   const visibleExamples =
     category === 'All'
-      ? REAL_TIME_CASE_EXAMPLES
-      : REAL_TIME_CASE_EXAMPLES.filter((item) => item.primaryLayer === category);
+      ? SETUP_EXAMPLES
+      : SETUP_EXAMPLES.filter((item) => item.primaryLayer === category);
 
-  const toggleCardState = (id: string, showBefore: boolean) => {
-    setBeforeMap((prev) => ({ ...prev, [id]: showBefore }));
+  const setCardView = (id: string, showTypical: boolean) => {
+    setTypicalViewMap((prev) => ({ ...prev, [id]: showTypical }));
   };
 
   return (
@@ -243,16 +161,15 @@ export function SeoRealTimeExamples() {
       <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
         <div
           role="tablist"
-          aria-label="Filter real-time ranking examples by search layer"
+          aria-label="Filter examples by visibility layer"
           className="flex flex-wrap items-center gap-1.5"
         >
           {categories.map((item) => {
             const isActive = category === item;
             const count =
               item === 'All'
-                ? REAL_TIME_CASE_EXAMPLES.length
-                : REAL_TIME_CASE_EXAMPLES.filter((e) => e.primaryLayer === item)
-                    .length;
+                ? SETUP_EXAMPLES.length
+                : SETUP_EXAMPLES.filter((e) => e.primaryLayer === item).length;
 
             return (
               <button
@@ -275,15 +192,14 @@ export function SeoRealTimeExamples() {
         </div>
 
         <p className="text-xs text-ink-muted dark:text-[#96948C]">
-          Toggle <strong className="font-medium text-ink dark:text-[#F5F4F0]">Before</strong> and{' '}
-          <strong className="font-medium text-ink dark:text-[#F5F4F0]">After</strong> inside any card to inspect the shift
+          Illustrative examples of what we set up for your website—not fabricated client stats.
         </p>
       </div>
 
-      {/* 2-Column Real-Time Case Examples Grid */}
+      {/* 2-Column Setup Examples Grid */}
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
         {visibleExamples.map((example) => {
-          const isBefore = Boolean(beforeMap[example.id]);
+          const isTypical = Boolean(typicalViewMap[example.id]);
           const isGeo = example.primaryLayer === 'GEO';
 
           return (
@@ -292,57 +208,53 @@ export function SeoRealTimeExamples() {
               className="flex h-full flex-col justify-between rounded-xl border border-ivory-border bg-ivory p-5 sm:p-6 dark:border-obsidian-border dark:bg-obsidian"
             >
               <div className="space-y-4">
-                {/* Header Metadata + Before/After Toggle */}
+                {/* Header + Toggle */}
                 <div className="flex flex-wrap items-start justify-between gap-3">
                   <div className="min-w-0">
                     <p className="font-mono-data text-xs text-champagne-deep dark:text-champagne-light">
-                      {example.layersLabel} &middot; {example.location}
+                      Example &middot; {example.layerLabel}
                     </p>
                     <h3 className="mt-1 font-display text-lg font-semibold text-ink dark:text-[#F5F4F0]">
-                      {example.businessName}
+                      {example.businessType}
                     </h3>
-                    <p className="text-xs text-ink-muted dark:text-[#96948C]">
-                      {example.industry}
-                    </p>
                   </div>
 
-                  {/* Card-level Before / After Switch */}
                   <div
                     role="group"
-                    aria-label={`Compare before and after for ${example.businessName}`}
+                    aria-label={`Compare typical site versus our setup for ${example.businessType}`}
                     className="inline-grid shrink-0 grid-cols-2 rounded-lg border border-ivory-border bg-white p-0.5 dark:border-obsidian-border-strong dark:bg-obsidian-surface"
                   >
                     <button
                       type="button"
-                      onClick={() => toggleCardState(example.id, true)}
-                      aria-pressed={isBefore}
+                      onClick={() => setCardView(example.id, true)}
+                      aria-pressed={isTypical}
                       className={`min-h-7 cursor-pointer rounded-md px-2.5 text-xs font-medium whitespace-nowrap transition-colors ${
-                        isBefore
+                        isTypical
                           ? 'bg-ink text-ivory dark:bg-[#F5F4F0] dark:text-obsidian'
                           : 'text-ink-muted hover:text-ink dark:text-[#96948C] dark:hover:text-[#F5F4F0]'
                       }`}
                     >
-                      Before
+                      Typical site
                     </button>
                     <button
                       type="button"
-                      onClick={() => toggleCardState(example.id, false)}
-                      aria-pressed={!isBefore}
+                      onClick={() => setCardView(example.id, false)}
+                      aria-pressed={!isTypical}
                       className={`min-h-7 cursor-pointer rounded-md px-2.5 text-xs font-semibold whitespace-nowrap transition-colors ${
-                        !isBefore
+                        !isTypical
                           ? 'bg-champagne text-obsidian'
                           : 'text-ink-muted hover:text-ink dark:text-[#96948C] dark:hover:text-[#F5F4F0]'
                       }`}
                     >
-                      After
+                      Our setup
                     </button>
                   </div>
                 </div>
 
-                {/* Authentic White Google / AI Preview Window */}
+                {/* White Google / AI Search Example Box */}
                 <div className="rounded-lg border border-[#DADCE0] bg-white p-4 text-[#202124]">
-                  {/* Query Line */}
-                  <div className="flex items-center gap-2 rounded-full border border-[#DADCE0] bg-[#F8F9FA] px-3 py-1.5 text-xs">
+                  {/* Example Search Query */}
+                  <div className="flex items-center gap-2 rounded-full border border-[#DADCE0] bg-[#F8F9FA] px-3 py-1.5">
                     {isGeo ? (
                       <Sparkles
                         className="h-3.5 w-3.5 shrink-0 text-[#1A73E8]"
@@ -351,8 +263,8 @@ export function SeoRealTimeExamples() {
                     ) : (
                       <GoogleSmallMark />
                     )}
-                    <span className="truncate font-medium text-[#202124]">
-                      {example.query}
+                    <span className="truncate text-xs text-[#202124]">
+                      {example.searchQuery}
                     </span>
                     <Search
                       className="ml-auto h-3.5 w-3.5 shrink-0 text-[#5F6368]"
@@ -360,113 +272,98 @@ export function SeoRealTimeExamples() {
                     />
                   </div>
 
-                  {/* Preview Result Body */}
-                  {isBefore ? (
-                    <div className="mt-3 rounded-md border border-[#F2B8B5] bg-[#FCE8E6]/50 p-3.5">
-                      <p className="text-xs font-semibold text-[#A50E0E]">
-                        Before: {example.beforePosition}
+                  {isTypical ? (
+                    <div className="mt-3.5 space-y-2 rounded-md border border-[#E8EAED] bg-[#F8F9FA] p-3">
+                      <p className="text-[11px] font-medium text-[#A50E0E]">
+                        Common issue before setup
                       </p>
-                      <p className="mt-1 text-sm font-medium text-[#202124]">
-                        {example.beforePreviewTitle}
+                      <p className="text-sm font-medium text-[#3C4043]">
+                        {example.typicalTitle}
                       </p>
-                      <p className="mt-1 text-xs leading-relaxed text-[#4D5156]">
-                        {example.beforePreviewBody}
+                      <p className="text-xs leading-relaxed text-[#5F6368]">
+                        {example.typicalDescription}
+                      </p>
+                      <p className="border-t border-[#E8EAED] pt-2 text-[11px] text-[#5F6368]">
+                        {example.typicalProblem}
                       </p>
                     </div>
                   ) : (
                     <div
-                      className={`mt-3 rounded-md border p-3.5 ${
+                      className={`mt-3.5 space-y-2 rounded-md border p-3 ${
                         isGeo
                           ? 'border-[#D2E3FC] bg-[#F4F8FE]'
                           : 'border-[#E8EAED] bg-[#F8F9FA]'
                       }`}
                     >
-                      <div className="flex items-center justify-between gap-2 text-[11px] text-[#5F6368]">
-                        <span className="truncate">https://{example.domain}</span>
-                        <span className="shrink-0 font-semibold text-[#137333]">
-                          {example.afterPosition}
+                      <div className="flex flex-wrap items-center justify-between gap-2 text-[11px]">
+                        <span className="font-medium text-[#4D5156]">
+                          https://{example.exampleDomain}
+                        </span>
+                        <span className="font-semibold text-[#137333]">
+                          Structured for {example.primaryLayer}
                         </span>
                       </div>
+
                       <p
-                        className={`mt-1 text-sm font-semibold leading-snug ${
+                        className={`text-sm font-medium leading-snug ${
                           isGeo ? 'text-[#174EA6]' : 'text-[#1A0DAB]'
                         }`}
                       >
-                        {example.afterPreviewTitle}
+                        {example.setupTitle}
                       </p>
-                      <p className="mt-1 text-xs leading-relaxed text-[#4D5156]">
-                        {example.afterPreviewBody}
+
+                      <p className="text-xs leading-relaxed text-[#4D5156]">
+                        {example.setupDescription}
                       </p>
-                      <p className="mt-2 flex items-center gap-1.5 text-[11px] font-medium text-[#137333]">
+
+                      <div className="flex items-start gap-1.5 border-t border-[#E8EAED] pt-2 text-[11px] text-[#3C4043]">
                         {example.primaryLayer === 'Google SEO' ? (
                           <MapPin
-                            className="h-3 w-3 shrink-0 text-[#EA4335]"
+                            className="mt-0.5 h-3 w-3 shrink-0 text-[#EA4335]"
                             aria-hidden="true"
                           />
                         ) : (
-                          <Check className="h-3 w-3 shrink-0" aria-hidden="true" />
+                          <Check
+                            className="mt-0.5 h-3 w-3 shrink-0 text-[#137333]"
+                            aria-hidden="true"
+                          />
                         )}
-                        <span>{example.afterMetaNote}</span>
-                      </p>
+                        <span>{example.setupHighlight}</span>
+                      </div>
                     </div>
                   )}
                 </div>
 
-                {/* Quantified Ranking & Outcome Strip */}
-                <div className="grid grid-cols-3 gap-3 border-y border-ivory-border py-3 text-xs dark:border-obsidian-border">
-                  <div>
-                    <p className="text-ink-muted dark:text-[#96948C]">Before</p>
-                    <p className="font-mono-data mt-0.5 font-medium text-ink dark:text-[#C8C6BE]">
-                      {example.beforePosition}
-                    </p>
-                  </div>
-                  <div>
-                    <p className="text-ink-muted dark:text-[#96948C]">
-                      After ({example.timeframe})
-                    </p>
-                    <p className="font-mono-data mt-0.5 font-semibold text-[#157A45] dark:text-[#34D399]">
-                      {example.afterPosition}
-                    </p>
-                  </div>
-                  <div>
-                    <p className="text-ink-muted dark:text-[#96948C]">Impact</p>
-                    <p className="mt-0.5 font-medium text-ink dark:text-[#F5F4F0]">
-                      {example.measuredOutcome}
-                    </p>
-                  </div>
-                </div>
-
-                {/* Exact Technical Work Applied */}
-                <div className="space-y-2">
+                {/* Plain-English Work List */}
+                <div className="space-y-2 pt-1">
                   <p className="text-xs font-semibold text-ink dark:text-[#F5F4F0]">
-                    What we implemented:
+                    What we will do for your business:
                   </p>
                   <ul className="space-y-1.5">
-                    {example.workApplied.map((step) => (
+                    {example.whatWeWillDo.map((task) => (
                       <li
-                        key={step}
-                        className="flex items-start gap-2 text-xs text-ink-muted dark:text-[#C8C6BE]"
+                        key={task}
+                        className="flex items-start gap-2 text-xs leading-relaxed text-ink-muted dark:text-[#C8C6BE]"
                       >
                         <Check
                           className="mt-0.5 h-3.5 w-3.5 shrink-0 text-champagne-deep dark:text-champagne-light"
                           aria-hidden="true"
                         />
-                        <span>{step}</span>
+                        <span>{task}</span>
                       </li>
                     ))}
                   </ul>
                 </div>
               </div>
 
-              {/* Footer Action */}
               <div className="mt-5 border-t border-ivory-border pt-4 dark:border-obsidian-border">
                 <RouteLink
                   to="/contact"
                   service="Google SEO, GEO & AEO"
-                  className="inline-flex min-h-9 items-center gap-2 text-xs font-semibold text-champagne-deep whitespace-nowrap transition-colors hover:text-ink dark:text-champagne-light dark:hover:text-[#F5F4F0]"
+                  className="inline-flex items-center gap-1.5 text-xs font-medium text-champagne-deep transition-colors hover:text-ink dark:text-champagne-light dark:hover:text-[#F5F4F0]"
                 >
-                  <span>Want results like {example.businessName}? Request a free check</span>
-                  <ArrowRight className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
+                  <span>Ask about setting this up for your business</span>
+                  <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
                 </RouteLink>
               </div>
             </article>
