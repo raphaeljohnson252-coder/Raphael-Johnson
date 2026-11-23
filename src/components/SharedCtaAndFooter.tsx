@@ -11,6 +11,7 @@ function getServiceFromPath(pathname: string): ServiceSlug | undefined {
   if (pathname === '/websites') return 'websites';
   if (pathname === '/flyers-and-print') return 'flyers';
   if (pathname.startsWith('/ai-videos')) return 'videos';
+  if (pathname === '/seo-geo-aeo') return 'seo';
   return undefined;
 }
 
@@ -60,7 +61,7 @@ export function SharedCtaAndFooter() {
           <div className="flex flex-col gap-6 md:flex-row md:items-start md:justify-between">
             <div className="space-y-2.5 text-sm text-ink-muted dark:text-[#C8C6BE]">
               <p className="font-medium text-ink dark:text-[#F5F4F0]">
-                &copy; 2026 {BUSINESS_NAME}. Digital design, print and AI video for health businesses.
+                &copy; 2026 {BUSINESS_NAME}. Websites, print, AI video &amp; Google SEO, GEO and AEO worldwide.
               </p>
               <p className="flex flex-wrap items-center gap-x-2 gap-y-1 text-ink-muted dark:text-[#96948C]">
                 <span>Email: </span>
@@ -100,6 +101,12 @@ export function SharedCtaAndFooter() {
                 className="whitespace-nowrap transition-colors duration-150 hover:text-champagne-deep dark:hover:text-champagne-light"
               >
                 AI Videos
+              </RouteLink>
+              <RouteLink
+                to="/seo-geo-aeo"
+                className="whitespace-nowrap transition-colors duration-150 hover:text-champagne-deep dark:hover:text-champagne-light"
+              >
+                SEO, GEO &amp; AEO
               </RouteLink>
               <RouteLink
                 to="/contact"

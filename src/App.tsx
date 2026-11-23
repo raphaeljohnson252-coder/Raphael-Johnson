@@ -23,6 +23,7 @@ import { AiVideosPage } from './pages/AiVideosPage';
 import { ContactPage } from './pages/ContactPage';
 import { FlyersPage } from './pages/FlyersPage';
 import { HomePage } from './pages/HomePage';
+import { SeoGeoAeoPage } from './pages/SeoGeoAeoPage';
 import { WebsitesPage } from './pages/WebsitesPage';
 import { RouterProvider, useRouter } from './router';
 import { applyRouteSeo } from './seo/seoConfig';
@@ -112,6 +113,7 @@ function AppShell() {
             {path === '/flyers-and-print' && <FlyersPage />}
             {path === '/ai-videos' && <AiVideosPage />}
             {activeIndustry && <AiVideoIndustryPage industry={activeIndustry} />}
+            {path === '/seo-geo-aeo' && <SeoGeoAeoPage />}
             {path === '/contact' && <ContactPage />}
           </motion.div>
         </AnimatePresence>

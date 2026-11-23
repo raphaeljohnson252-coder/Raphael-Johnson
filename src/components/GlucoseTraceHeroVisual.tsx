@@ -53,10 +53,10 @@ const ACTIVE_CHECKPOINTS: ActiveCheckpoint[] = [
   },
 ];
 
-function formatLagosTime(): string {
+function formatUtcTime(): string {
   try {
     return new Intl.DateTimeFormat('en-GB', {
-      timeZone: 'Africa/Lagos',
+      timeZone: 'UTC',
       hour: '2-digit',
       minute: '2-digit',
       hour12: false,
@@ -68,11 +68,11 @@ function formatLagosTime(): string {
 
 export function GlucoseTraceHeroVisual() {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
-  const [lagosTime, setLagosTime] = useState<string>(formatLagosTime);
+  const [utcTime, setUtcTime] = useState<string>(formatUtcTime);
 
   useEffect(() => {
     const timer = window.setInterval(() => {
-      setLagosTime(formatLagosTime());
+      setUtcTime(formatUtcTime());
     }, 30000);
     return () => window.clearInterval(timer);
   }, []);
@@ -95,7 +95,7 @@ export function GlucoseTraceHeroVisual() {
               {currentPoint.time} &middot; {currentPoint.label}
             </>
           ) : (
-            <>Lagos {lagosTime} WAT &middot; Always Active</>
+            <>Global Desk {utcTime} UTC &middot; Always Active</>
           )}
         </span>
         <span className="font-mono-data text-xs text-[#157A45] dark:text-[#34D399]">

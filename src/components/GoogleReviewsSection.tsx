@@ -22,7 +22,8 @@ type FilterKey =
   | 'International'
   | 'Websites'
   | 'AI Videos'
-  | 'Flyers & Print';
+  | 'Flyers & Print'
+  | 'SEO, GEO & AEO';
 
 type SortKey = 'relevant' | 'newest' | 'highest' | 'lowest';
 
@@ -90,7 +91,7 @@ function GoogleStar({
         <defs>
           <linearGradient id={gradientId} x1="0" x2="1" y1="0" y2="0">
             <stop offset="50%" stopColor="#FBBC05" />
-            <stop offset="50%" stopColor="currentColor" stopOpacity="0.22" />
+            <stop offset="50%" stopColor="#DADCE0" />
           </linearGradient>
         </defs>
         <path
@@ -109,8 +110,7 @@ function GoogleStar({
       focusable="false"
     >
       <path
-        fill={filled ? '#FBBC05' : 'currentColor'}
-        fillOpacity={filled ? 1 : 0.2}
+        fill={filled ? '#FBBC05' : '#DADCE0'}
         d="M10 1.4l2.58 5.23 5.77.84-4.18 4.07.99 5.75L10 14.57l-5.16 2.72.99-5.75L1.65 7.47l5.77-.84L10 1.4z"
       />
     </svg>
@@ -126,7 +126,7 @@ function StarRow({
 }) {
   return (
     <span
-      className="inline-flex items-center gap-0.5 text-ink-muted dark:text-[#96948C]"
+      className="inline-flex items-center gap-0.5"
       aria-label={`${rating} out of 5 stars`}
     >
       {[1, 2, 3, 4, 5].map((star) => {
@@ -176,7 +176,7 @@ export function GoogleReviewsSection({
   const [draftName, setDraftName] = useState('');
   const [draftBusiness, setDraftBusiness] = useState('');
   const [draftCity, setDraftCity] = useState('');
-  const [draftRegion, setDraftRegion] = useState<ReviewRegion>('Nigeria');
+  const [draftRegion, setDraftRegion] = useState<ReviewRegion>('International');
   const [draftService, setDraftService] =
     useState<ReviewServiceCategory>('Websites');
   const [draftQuote, setDraftQuote] = useState('');
@@ -229,6 +229,9 @@ export function GoogleReviewsSection({
         .length,
       'Flyers & Print': reviews.filter(
         (r) => r.serviceCategory === 'Flyers & Print'
+      ).length,
+      'SEO, GEO & AEO': reviews.filter(
+        (r) => r.serviceCategory === 'SEO, GEO & AEO'
       ).length,
     };
   }, [reviews]);
@@ -297,8 +300,7 @@ export function GoogleReviewsSection({
       return;
     }
 
-    const color =
-      AVATAR_PALETTE[reviews.length % AVATAR_PALETTE.length];
+    const color = AVATAR_PALETTE[reviews.length % AVATAR_PALETTE.length];
 
     const newReview: TestimonialData = {
       id: `client-review-${Date.now()}`,
@@ -342,54 +344,55 @@ export function GoogleReviewsSection({
     'Websites',
     'AI Videos',
     'Flyers & Print',
+    'SEO, GEO & AEO',
   ];
 
   return (
     <section
       id="client-reviews"
       aria-label="Google reviews for Ewixstudio"
-      className="border-t border-ivory-border bg-ivory dark:border-obsidian-border dark:bg-obsidian"
+      className="border-t border-[#DADCE0] bg-white text-[#202124] dark:border-obsidian-border"
     >
       <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
         {/* Section Title */}
         <RevealBlock className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
           <div className="space-y-2">
-            <div className="flex items-center gap-2 text-xs font-medium text-ink-muted dark:text-[#C8C6BE]">
+            <div className="flex items-center gap-2 text-xs font-medium text-[#5F6368]">
               <GoogleGIcon className="h-4 w-4 shrink-0" />
               <span>Google Reviews</span>
               <span aria-hidden="true">&middot;</span>
-              <span>Nigeria &amp; Worldwide</span>
+              <span>Worldwide Clients</span>
             </div>
-            <h2 className="font-display text-2xl font-bold tracking-tight text-ink text-balance sm:text-3xl dark:text-[#F5F4F0]">
+            <h2 className="font-display text-2xl font-bold tracking-tight text-[#202124] text-balance sm:text-3xl">
               What our clients say on Google
             </h2>
           </div>
 
-          <p className="text-sm text-ink-muted dark:text-[#96948C]">
-            Feedback from clinics, restaurants, agencies, and online shops
+          <p className="text-sm text-[#5F6368]">
+            Verified feedback from clinics, restaurants, agencies, and online shops
           </p>
         </RevealBlock>
 
-        {/* Google Business Profile Summary Panel */}
+        {/* Authentic White Google Business Profile Summary Panel */}
         <RevealBlock delay={0.05} className="mt-8">
-          <div className="rounded-xl border border-ivory-border bg-white p-6 sm:p-8 dark:border-obsidian-border dark:bg-obsidian-surface">
+          <div className="rounded-xl border border-[#DADCE0] bg-[#F8F9FA] p-6 sm:p-8">
             <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-12">
               {/* Left: Rating Score + Google Logo */}
               <div className="space-y-2 lg:col-span-4">
                 <div className="flex items-center gap-2.5">
                   <GoogleGIcon className="h-6 w-6 shrink-0" />
                   <div className="min-w-0">
-                    <p className="font-display text-base font-semibold text-ink dark:text-[#F5F4F0]">
+                    <p className="font-display text-base font-semibold text-[#202124]">
                       {BUSINESS_NAME}
                     </p>
-                    <p className="text-xs text-ink-muted dark:text-[#96948C]">
-                      Web Design, Flyers &amp; AI Video Studio
+                    <p className="text-xs text-[#5F6368]">
+                      Websites, Flyers, AI Videos &amp; Google SEO/GEO/AEO
                     </p>
                   </div>
                 </div>
 
                 <div className="flex items-baseline gap-3 pt-2">
-                  <span className="font-display text-5xl font-bold tracking-tight text-ink tabular-nums dark:text-[#F5F4F0]">
+                  <span className="font-display text-5xl font-bold tracking-tight text-[#202124] tabular-nums">
                     {ratingStats.average}
                   </span>
                   <div className="space-y-1">
@@ -397,8 +400,8 @@ export function GoogleReviewsSection({
                       rating={ratingStats.numericAverage}
                       sizeClass="h-5 w-5"
                     />
-                    <p className="text-xs text-ink-muted tabular-nums dark:text-[#96948C]">
-                      Based on {ratingStats.total} reviews
+                    <p className="text-xs text-[#5F6368] tabular-nums">
+                      Based on {ratingStats.total} Google reviews
                     </p>
                   </div>
                 </div>
@@ -423,26 +426,22 @@ export function GoogleReviewsSection({
                       onClick={() => handleToggleStarBar(star)}
                       aria-pressed={isSelected}
                       aria-label={`Filter by ${star} star reviews (${count})`}
-                      className={`group flex w-full items-center gap-3 rounded-md px-1.5 py-0.5 text-left transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-champagne ${
+                      className={`group flex w-full items-center gap-3 rounded-md px-1.5 py-0.5 text-left transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1A73E8] ${
                         isInteractive
-                          ? 'cursor-pointer hover:bg-ivory dark:hover:bg-obsidian'
+                          ? 'cursor-pointer hover:bg-[#EEF1F5]'
                           : 'cursor-default opacity-60'
-                      } ${
-                        isSelected
-                          ? 'bg-ivory ring-1 ring-champagne/70 dark:bg-obsidian'
-                          : ''
-                      }`}
+                      } ${isSelected ? 'bg-[#E8F0FE] ring-1 ring-[#1A73E8]/50' : ''}`}
                     >
-                      <span className="font-mono-data w-4 shrink-0 text-xs font-medium text-ink dark:text-[#F5F4F0]">
+                      <span className="font-mono-data w-4 shrink-0 text-xs font-medium text-[#202124]">
                         {star}
                       </span>
-                      <div className="h-2.5 flex-1 overflow-hidden rounded-full bg-ivory-muted dark:bg-obsidian-elevated">
+                      <div className="h-2.5 flex-1 overflow-hidden rounded-full bg-[#E8EAED]">
                         <div
                           className="h-full rounded-full bg-[#FBBC05] transition-all duration-300"
                           style={{ width: `${pct}%` }}
                         />
                       </div>
-                      <span className="font-mono-data w-6 shrink-0 text-right text-xs text-ink-muted dark:text-[#96948C]">
+                      <span className="font-mono-data w-6 shrink-0 text-right text-xs text-[#5F6368]">
                         {count}
                       </span>
                     </button>
@@ -460,7 +459,7 @@ export function GoogleReviewsSection({
                   <PenLine className="h-4 w-4 shrink-0" aria-hidden="true" />
                   <span>Write a review</span>
                 </button>
-                <p className="text-xs text-ink-muted lg:text-right dark:text-[#96948C]">
+                <p className="text-xs text-[#5F6368] lg:text-right">
                   {filterCounts.Nigeria} Nigeria &middot;{' '}
                   {filterCounts.International} International
                 </p>
@@ -478,17 +477,19 @@ export function GoogleReviewsSection({
               exit={{ opacity: 0 }}
               transition={{ duration: 0.2 }}
               role="status"
-              className="mt-4 flex items-center justify-between gap-3 rounded-lg border border-ivory-border bg-white px-4 py-3 text-sm text-ink dark:border-obsidian-border dark:bg-obsidian-surface dark:text-[#F5F4F0]"
+              className="mt-4 flex items-center justify-between gap-3 rounded-lg border border-[#DADCE0] bg-[#F8F9FA] px-4 py-3 text-sm text-[#202124]"
             >
               <div className="flex items-center gap-2">
                 <Check className="h-4 w-4 shrink-0 text-[#34A853]" aria-hidden="true" />
-                <span>Your review has been added to the top of the list. Thank you for sharing your feedback!</span>
+                <span>
+                  Your review has been added to the top of the list. Thank you for sharing your feedback!
+                </span>
               </div>
               <button
                 type="button"
                 onClick={() => setSubmittedNotice(false)}
                 aria-label="Dismiss review notice"
-                className="cursor-pointer p-1 text-ink-muted hover:text-ink dark:text-[#96948C] dark:hover:text-[#F5F4F0]"
+                className="cursor-pointer p-1 text-[#5F6368] hover:text-[#202124]"
               >
                 <X className="h-4 w-4" aria-hidden="true" />
               </button>
@@ -512,10 +513,10 @@ export function GoogleReviewsSection({
                   role="tab"
                   aria-selected={isActive}
                   onClick={() => handleSelectFilter(key)}
-                  className={`inline-flex min-h-9 cursor-pointer items-center gap-1.5 rounded-lg border px-3.5 py-1.5 text-xs font-medium whitespace-nowrap shrink-0 transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-champagne ${
+                  className={`inline-flex min-h-9 cursor-pointer items-center gap-1.5 rounded-lg border px-3.5 py-1.5 text-xs font-medium whitespace-nowrap shrink-0 transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1A73E8] ${
                     isActive
-                      ? 'border-ink bg-ink text-ivory dark:border-[#F5F4F0] dark:bg-[#F5F4F0] dark:text-obsidian'
-                      : 'border-ivory-border bg-white text-ink-muted hover:border-ink/40 hover:text-ink dark:border-obsidian-border dark:bg-obsidian-surface dark:text-[#C8C6BE] dark:hover:border-obsidian-border-strong dark:hover:text-[#F5F4F0]'
+                      ? 'border-[#1A73E8] bg-[#E8F0FE] text-[#174EA6]'
+                      : 'border-[#DADCE0] bg-white text-[#3C4043] hover:bg-[#F8F9FA] hover:text-[#202124]'
                   }`}
                 >
                   <span>{key}</span>
@@ -530,7 +531,7 @@ export function GoogleReviewsSection({
               <button
                 type="button"
                 onClick={() => setStarFilter(null)}
-                className="inline-flex min-h-9 cursor-pointer items-center gap-1 rounded-lg border border-champagne/70 bg-white px-3 py-1.5 text-xs font-medium text-champagne-deep whitespace-nowrap shrink-0 transition-colors duration-150 hover:border-champagne dark:bg-obsidian-surface dark:text-champagne-light"
+                className="inline-flex min-h-9 cursor-pointer items-center gap-1 rounded-lg border border-[#1A73E8] bg-[#E8F0FE] px-3 py-1.5 text-xs font-medium text-[#174EA6] whitespace-nowrap shrink-0 transition-colors duration-150 hover:bg-[#D2E3FC]"
               >
                 <span>{starFilter} stars only</span>
                 <X className="h-3.5 w-3.5" aria-hidden="true" />
@@ -541,7 +542,7 @@ export function GoogleReviewsSection({
           <div className="flex shrink-0 items-center gap-2 self-start sm:self-auto">
             <label
               htmlFor="google-reviews-sort"
-              className="text-xs text-ink-muted whitespace-nowrap dark:text-[#96948C]"
+              className="text-xs text-[#5F6368] whitespace-nowrap"
             >
               Sort by
             </label>
@@ -550,7 +551,7 @@ export function GoogleReviewsSection({
                 id="google-reviews-sort"
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value as SortKey)}
-                className="min-h-9 cursor-pointer appearance-none rounded-lg border border-ivory-border bg-white py-1.5 pr-8 pl-3 text-xs font-medium text-ink transition-colors duration-150 hover:border-ink/40 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-champagne dark:border-obsidian-border dark:bg-obsidian-surface dark:text-[#F5F4F0] dark:hover:border-obsidian-border-strong"
+                className="min-h-9 cursor-pointer appearance-none rounded-lg border border-[#DADCE0] bg-white py-1.5 pr-8 pl-3 text-xs font-medium text-[#202124] transition-colors duration-150 hover:border-[#BDC1C6] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1A73E8]"
               >
                 <option value="relevant">Most relevant</option>
                 <option value="newest">Newest</option>
@@ -558,17 +559,17 @@ export function GoogleReviewsSection({
                 <option value="lowest">Lowest rating</option>
               </select>
               <ChevronDown
-                className="pointer-events-none absolute top-1/2 right-2.5 h-3.5 w-3.5 -translate-y-1/2 text-ink-muted dark:text-[#96948C]"
+                className="pointer-events-none absolute top-1/2 right-2.5 h-3.5 w-3.5 -translate-y-1/2 text-[#5F6368]"
                 aria-hidden="true"
               />
             </div>
           </div>
         </div>
 
-        {/* Google Review Cards Grid */}
+        {/* Google Review Cards Grid (Pure White Google Cards) */}
         {filteredReviews.length === 0 ? (
-          <div className="mt-8 rounded-xl border border-ivory-border bg-white p-8 text-center dark:border-obsidian-border dark:bg-obsidian-surface">
-            <p className="text-sm text-ink-muted dark:text-[#C8C6BE]">
+          <div className="mt-8 rounded-xl border border-[#DADCE0] bg-[#F8F9FA] p-8 text-center">
+            <p className="text-sm text-[#5F6368]">
               No reviews match the selected filter combination.
             </p>
             <button
@@ -577,7 +578,7 @@ export function GoogleReviewsSection({
                 setActiveFilter('All');
                 setStarFilter(null);
               }}
-              className="mt-3 inline-flex min-h-9 cursor-pointer items-center rounded-lg border border-ivory-border px-4 py-1.5 text-xs font-medium text-ink transition-colors hover:border-champagne dark:border-obsidian-border-strong dark:text-[#F5F4F0]"
+              className="mt-3 inline-flex min-h-9 cursor-pointer items-center rounded-lg border border-[#DADCE0] bg-white px-4 py-1.5 text-xs font-medium text-[#202124] transition-colors hover:bg-[#F1F3F4]"
             >
               Reset filters
             </button>
@@ -597,7 +598,7 @@ export function GoogleReviewsSection({
               return (
                 <article
                   key={review.id}
-                  className="flex h-full flex-col justify-between rounded-xl border border-ivory-border bg-white p-5 transition-colors duration-200 hover:border-ink/25 dark:border-obsidian-border dark:bg-obsidian-surface dark:hover:border-obsidian-border-strong"
+                  className="flex h-full flex-col justify-between rounded-xl border border-[#DADCE0] bg-white p-5 transition-colors duration-200 hover:border-[#BDC1C6]"
                 >
                   <div>
                     {/* Reviewer Identity Row */}
@@ -616,7 +617,7 @@ export function GoogleReviewsSection({
                             <span
                               title="Google Local Guide"
                               aria-label="Local Guide"
-                              className="absolute -right-0.5 -bottom-0.5 flex h-4 w-4 items-center justify-center rounded-full border-2 border-white bg-[#F57C00] text-white dark:border-obsidian-surface"
+                              className="absolute -right-0.5 -bottom-0.5 flex h-4 w-4 items-center justify-center rounded-full border-2 border-white bg-[#F57C00] text-white"
                             >
                               <svg
                                 viewBox="0 0 12 12"
@@ -633,10 +634,10 @@ export function GoogleReviewsSection({
                         </div>
 
                         <div className="min-w-0">
-                          <h3 className="truncate font-display text-sm font-semibold text-ink dark:text-[#F5F4F0]">
+                          <h3 className="truncate font-display text-sm font-semibold text-[#202124]">
                             {review.clientName}
                           </h3>
-                          <p className="truncate text-xs text-ink-muted dark:text-[#96948C]">
+                          <p className="truncate text-xs text-[#5F6368]">
                             {review.isLocalGuide ? 'Local Guide · ' : ''}
                             <span className="tabular-nums">
                               {review.reviewerReviewCount}{' '}
@@ -649,11 +650,11 @@ export function GoogleReviewsSection({
                         </div>
                       </div>
 
-                      <GoogleGIcon className="mt-0.5 h-4 w-4 shrink-0 opacity-90" />
+                      <GoogleGIcon className="mt-0.5 h-4 w-4 shrink-0" />
                     </div>
 
                     {/* Stars + Relative Date + Service */}
-                    <div className="mt-3.5 flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-ink-muted dark:text-[#96948C]">
+                    <div className="mt-3.5 flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-[#5F6368]">
                       <StarRow rating={review.rating} sizeClass="h-3.5 w-3.5" />
                       <span>{review.relativeTime}</span>
                       <span aria-hidden="true">&middot;</span>
@@ -661,7 +662,7 @@ export function GoogleReviewsSection({
                     </div>
 
                     {/* Review Body */}
-                    <p className="mt-3 text-[15px] leading-relaxed text-ink/90 dark:text-[#E2E0D8]">
+                    <p className="mt-3 text-[15px] leading-relaxed text-[#202124]">
                       {displayQuote}
                       {isLong && (
                         <>
@@ -669,7 +670,7 @@ export function GoogleReviewsSection({
                           <button
                             type="button"
                             onClick={() => toggleExpand(review.id)}
-                            className="cursor-pointer font-medium text-[#1A73E8] hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1A73E8] dark:text-[#8AB4F8]"
+                            className="cursor-pointer font-medium text-[#1A73E8] hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1A73E8]"
                           >
                             {isExpanded ? 'Less' : 'More'}
                           </button>
@@ -678,28 +679,25 @@ export function GoogleReviewsSection({
                     </p>
 
                     {/* Attributable business & role line */}
-                    <p className="mt-3 text-xs text-ink-muted dark:text-[#96948C]">
+                    <p className="mt-3 text-xs text-[#5F6368]">
                       {review.business} &middot; {review.role}
                     </p>
 
                     {/* Optional Response from the Owner */}
                     {review.ownerResponse && (
-                      <div className="mt-4 rounded-lg border border-ivory-border bg-ivory/80 p-3.5 dark:border-obsidian-border dark:bg-obsidian/80">
+                      <div className="mt-4 rounded-lg border border-[#E8EAED] bg-[#F8F9FA] p-3.5">
                         <div className="flex items-center gap-1.5 text-xs">
-                          <span className="font-semibold text-ink dark:text-[#F5F4F0]">
+                          <span className="font-semibold text-[#202124]">
                             Response from the owner
                           </span>
-                          <span
-                            aria-hidden="true"
-                            className="text-ink-muted dark:text-[#96948C]"
-                          >
+                          <span aria-hidden="true" className="text-[#5F6368]">
                             &middot;
                           </span>
-                          <span className="text-ink-muted dark:text-[#96948C]">
+                          <span className="text-[#5F6368]">
                             {review.ownerResponse.relativeTime}
                           </span>
                         </div>
-                        <p className="mt-1.5 text-xs leading-relaxed text-ink-muted dark:text-[#C8C6BE]">
+                        <p className="mt-1.5 text-xs leading-relaxed text-[#3C4043]">
                           {review.ownerResponse.text}
                         </p>
                       </div>
@@ -707,15 +705,15 @@ export function GoogleReviewsSection({
                   </div>
 
                   {/* Card Footer: Helpful Button */}
-                  <div className="mt-4 flex items-center justify-between border-t border-ivory-border pt-3 dark:border-obsidian-border">
+                  <div className="mt-4 flex items-center justify-between border-t border-[#E8EAED] pt-3">
                     <button
                       type="button"
                       onClick={() => toggleHelpful(review.id)}
                       aria-pressed={isHelpful}
-                      className={`inline-flex min-h-8 cursor-pointer items-center gap-1.5 rounded-md px-2.5 py-1 text-xs font-medium transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-champagne ${
+                      className={`inline-flex min-h-8 cursor-pointer items-center gap-1.5 rounded-md px-2.5 py-1 text-xs font-medium transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1A73E8] ${
                         isHelpful
-                          ? 'bg-[#1A73E8]/12 text-[#1A73E8] dark:bg-[#8AB4F8]/15 dark:text-[#8AB4F8]'
-                          : 'text-ink-muted hover:bg-ivory hover:text-ink dark:text-[#96948C] dark:hover:bg-obsidian dark:hover:text-[#F5F4F0]'
+                          ? 'bg-[#E8F0FE] text-[#174EA6]'
+                          : 'text-[#5F6368] hover:bg-[#F1F3F4] hover:text-[#202124]'
                       }`}
                     >
                       <ThumbsUp
@@ -730,7 +728,7 @@ export function GoogleReviewsSection({
                       )}
                     </button>
 
-                    <span className="text-xs text-ink-muted dark:text-[#96948C]">
+                    <span className="text-xs text-[#5F6368]">
                       Posted on Google
                     </span>
                   </div>
@@ -752,7 +750,7 @@ export function GoogleReviewsSection({
                       Math.min(prev + 6, filteredReviews.length)
                     )
                   }
-                  className="inline-flex min-h-11 cursor-pointer items-center justify-center rounded-lg border border-ivory-border bg-white px-5 py-2.5 text-sm font-medium text-ink whitespace-nowrap shrink-0 transition-colors duration-150 hover:border-champagne hover:text-champagne-deep focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-champagne dark:border-obsidian-border-strong dark:bg-obsidian-surface dark:text-[#F5F4F0] dark:hover:border-champagne-light dark:hover:text-champagne-light"
+                  className="inline-flex min-h-11 cursor-pointer items-center justify-center rounded-lg border border-[#DADCE0] bg-white px-5 py-2.5 text-sm font-medium text-[#202124] whitespace-nowrap shrink-0 transition-colors duration-150 hover:bg-[#F8F9FA] hover:border-[#1A73E8] hover:text-[#1A73E8] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1A73E8]"
                 >
                   Load more reviews ({remainingCount} more)
                 </button>
@@ -760,7 +758,7 @@ export function GoogleReviewsSection({
                   <button
                     type="button"
                     onClick={() => setVisibleCount(filteredReviews.length)}
-                    className="inline-flex min-h-11 cursor-pointer items-center justify-center rounded-lg px-4 py-2.5 text-sm font-medium text-ink-muted whitespace-nowrap shrink-0 transition-colors duration-150 hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-champagne dark:text-[#C8C6BE] dark:hover:text-[#F5F4F0]"
+                    className="inline-flex min-h-11 cursor-pointer items-center justify-center rounded-lg px-4 py-2.5 text-sm font-medium text-[#1A73E8] whitespace-nowrap shrink-0 transition-colors duration-150 hover:bg-[#E8F0FE] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1A73E8]"
                   >
                     View all {filteredReviews.length} reviews
                   </button>
@@ -770,7 +768,7 @@ export function GoogleReviewsSection({
               <button
                 type="button"
                 onClick={() => setVisibleCount(INITIAL_VISIBLE_COUNT)}
-                className="inline-flex min-h-11 cursor-pointer items-center justify-center rounded-lg border border-ivory-border bg-white px-5 py-2.5 text-sm font-medium text-ink-muted whitespace-nowrap shrink-0 transition-colors duration-150 hover:border-ink/40 hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-champagne dark:border-obsidian-border dark:bg-obsidian-surface dark:text-[#C8C6BE] dark:hover:border-obsidian-border-strong dark:hover:text-[#F5F4F0]"
+                className="inline-flex min-h-11 cursor-pointer items-center justify-center rounded-lg border border-[#DADCE0] bg-white px-5 py-2.5 text-sm font-medium text-[#5F6368] whitespace-nowrap shrink-0 transition-colors duration-150 hover:bg-[#F8F9FA] hover:text-[#202124] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1A73E8]"
               >
                 Show fewer reviews
               </button>
@@ -779,7 +777,7 @@ export function GoogleReviewsSection({
         )}
       </div>
 
-      {/* Interactive "Write a Review" Modal */}
+      {/* Interactive "Write a Review" Modal (Authentic White Google Dialog) */}
       <AnimatePresence>
         {isComposerOpen && (
           <motion.div
@@ -790,7 +788,7 @@ export function GoogleReviewsSection({
             role="dialog"
             aria-modal="true"
             aria-labelledby="write-review-title"
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4 backdrop-blur-xs"
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4 backdrop-blur-xs"
             onClick={() => setIsComposerOpen(false)}
           >
             <motion.div
@@ -807,7 +805,7 @@ export function GoogleReviewsSection({
               }
               transition={{ duration: 0.24, ease: LUXURY_EASE }}
               onClick={(e) => e.stopPropagation()}
-              className="w-full max-w-lg rounded-xl border border-ivory-border bg-white p-6 shadow-2xl sm:p-7 dark:border-obsidian-border-strong dark:bg-obsidian-surface"
+              className="w-full max-w-lg rounded-xl border border-[#DADCE0] bg-white p-6 text-[#202124] shadow-2xl sm:p-7"
             >
               <div className="flex items-start justify-between gap-4">
                 <div className="flex items-center gap-2.5">
@@ -815,11 +813,11 @@ export function GoogleReviewsSection({
                   <div>
                     <h3
                       id="write-review-title"
-                      className="font-display text-lg font-semibold text-ink dark:text-[#F5F4F0]"
+                      className="font-display text-lg font-semibold text-[#202124]"
                     >
                       Review {BUSINESS_NAME}
                     </h3>
-                    <p className="text-xs text-ink-muted dark:text-[#96948C]">
+                    <p className="text-xs text-[#5F6368]">
                       Share your experience with our team
                     </p>
                   </div>
@@ -828,7 +826,7 @@ export function GoogleReviewsSection({
                   type="button"
                   onClick={() => setIsComposerOpen(false)}
                   aria-label="Close review form"
-                  className="inline-flex h-9 w-9 cursor-pointer items-center justify-center rounded-lg border border-ivory-border text-ink-muted transition-colors hover:text-ink dark:border-obsidian-border dark:text-[#C8C6BE] dark:hover:text-[#F5F4F0]"
+                  className="inline-flex h-9 w-9 cursor-pointer items-center justify-center rounded-lg border border-[#DADCE0] text-[#5F6368] transition-colors hover:bg-[#F1F3F4] hover:text-[#202124]"
                 >
                   <X className="h-4 w-4" aria-hidden="true" />
                 </button>
@@ -837,7 +835,7 @@ export function GoogleReviewsSection({
               <form onSubmit={handleSubmitReview} className="mt-5 space-y-4">
                 {/* Interactive Star Selector */}
                 <div>
-                  <span className="block text-xs font-medium text-ink-muted dark:text-[#C8C6BE]">
+                  <span className="block text-xs font-medium text-[#5F6368]">
                     Your rating
                   </span>
                   <div
@@ -853,13 +851,13 @@ export function GoogleReviewsSection({
                           onMouseEnter={() => setHoverRating(star)}
                           onClick={() => setDraftRating(star)}
                           aria-label={`Rate ${star} out of 5 stars`}
-                          className="cursor-pointer rounded p-1 transition-transform hover:scale-110 focus-visible:outline-2 focus-visible:outline-champagne"
+                          className="cursor-pointer rounded p-1 transition-transform hover:scale-110 focus-visible:outline-2 focus-visible:outline-[#1A73E8]"
                         >
                           <GoogleStar filled={active} sizeClass="h-7 w-7" />
                         </button>
                       );
                     })}
-                    <span className="font-mono-data ml-2 text-xs text-ink-muted dark:text-[#96948C]">
+                    <span className="font-mono-data ml-2 text-xs text-[#5F6368]">
                       {draftRating}.0 / 5.0
                     </span>
                   </div>
@@ -869,7 +867,7 @@ export function GoogleReviewsSection({
                   <div>
                     <label
                       htmlFor="review-name"
-                      className="block text-xs font-medium text-ink-muted dark:text-[#C8C6BE]"
+                      className="block text-xs font-medium text-[#5F6368]"
                     >
                       Your name *
                     </label>
@@ -879,13 +877,13 @@ export function GoogleReviewsSection({
                       value={draftName}
                       onChange={(e) => setDraftName(e.target.value)}
                       placeholder="e.g. Dr. Segun Adeola"
-                      className="mt-1 w-full rounded-lg border border-ivory-border bg-ivory px-3.5 py-2 text-sm text-ink placeholder:text-ink-muted/60 focus:border-[#1A73E8] focus:outline-none dark:border-obsidian-border-strong dark:bg-obsidian dark:text-[#F5F4F0] dark:placeholder:text-[#7A7870]"
+                      className="mt-1 w-full rounded-lg border border-[#DADCE0] bg-white px-3.5 py-2 text-sm text-[#202124] placeholder:text-[#80868B] focus:border-[#1A73E8] focus:outline-none"
                     />
                   </div>
                   <div>
                     <label
                       htmlFor="review-city"
-                      className="block text-xs font-medium text-ink-muted dark:text-[#C8C6BE]"
+                      className="block text-xs font-medium text-[#5F6368]"
                     >
                       City &amp; country *
                     </label>
@@ -894,8 +892,8 @@ export function GoogleReviewsSection({
                       type="text"
                       value={draftCity}
                       onChange={(e) => setDraftCity(e.target.value)}
-                      placeholder="e.g. Lagos, Nigeria"
-                      className="mt-1 w-full rounded-lg border border-ivory-border bg-ivory px-3.5 py-2 text-sm text-ink placeholder:text-ink-muted/60 focus:border-[#1A73E8] focus:outline-none dark:border-obsidian-border-strong dark:bg-obsidian dark:text-[#F5F4F0] dark:placeholder:text-[#7A7870]"
+                      placeholder="e.g. London, UK"
+                      className="mt-1 w-full rounded-lg border border-[#DADCE0] bg-white px-3.5 py-2 text-sm text-[#202124] placeholder:text-[#80868B] focus:border-[#1A73E8] focus:outline-none"
                     />
                   </div>
                 </div>
@@ -904,7 +902,7 @@ export function GoogleReviewsSection({
                   <div className="sm:col-span-1">
                     <label
                       htmlFor="review-region"
-                      className="block text-xs font-medium text-ink-muted dark:text-[#C8C6BE]"
+                      className="block text-xs font-medium text-[#5F6368]"
                     >
                       Region
                     </label>
@@ -914,17 +912,17 @@ export function GoogleReviewsSection({
                       onChange={(e) =>
                         setDraftRegion(e.target.value as ReviewRegion)
                       }
-                      className="mt-1 w-full rounded-lg border border-ivory-border bg-ivory px-3 py-2 text-sm text-ink focus:border-[#1A73E8] focus:outline-none dark:border-obsidian-border-strong dark:bg-obsidian dark:text-[#F5F4F0]"
+                      className="mt-1 w-full rounded-lg border border-[#DADCE0] bg-white px-3 py-2 text-sm text-[#202124] focus:border-[#1A73E8] focus:outline-none"
                     >
-                      <option value="Nigeria">Nigeria</option>
                       <option value="International">International</option>
+                      <option value="Nigeria">Nigeria</option>
                     </select>
                   </div>
 
                   <div className="sm:col-span-1">
                     <label
                       htmlFor="review-service"
-                      className="block text-xs font-medium text-ink-muted dark:text-[#C8C6BE]"
+                      className="block text-xs font-medium text-[#5F6368]"
                     >
                       Service
                     </label>
@@ -934,18 +932,19 @@ export function GoogleReviewsSection({
                       onChange={(e) =>
                         setDraftService(e.target.value as ReviewServiceCategory)
                       }
-                      className="mt-1 w-full rounded-lg border border-ivory-border bg-ivory px-3 py-2 text-sm text-ink focus:border-[#1A73E8] focus:outline-none dark:border-obsidian-border-strong dark:bg-obsidian dark:text-[#F5F4F0]"
+                      className="mt-1 w-full rounded-lg border border-[#DADCE0] bg-white px-3 py-2 text-sm text-[#202124] focus:border-[#1A73E8] focus:outline-none"
                     >
                       <option value="Websites">Websites</option>
                       <option value="AI Videos">AI Videos</option>
                       <option value="Flyers & Print">Flyers &amp; Print</option>
+                      <option value="SEO, GEO & AEO">SEO, GEO &amp; AEO</option>
                     </select>
                   </div>
 
                   <div className="sm:col-span-1">
                     <label
                       htmlFor="review-business"
-                      className="block text-xs font-medium text-ink-muted dark:text-[#C8C6BE]"
+                      className="block text-xs font-medium text-[#5F6368]"
                     >
                       Business
                     </label>
@@ -955,7 +954,7 @@ export function GoogleReviewsSection({
                       value={draftBusiness}
                       onChange={(e) => setDraftBusiness(e.target.value)}
                       placeholder="Clinic or brand"
-                      className="mt-1 w-full rounded-lg border border-ivory-border bg-ivory px-3 py-2 text-sm text-ink placeholder:text-ink-muted/60 focus:border-[#1A73E8] focus:outline-none dark:border-obsidian-border-strong dark:bg-obsidian dark:text-[#F5F4F0] dark:placeholder:text-[#7A7870]"
+                      className="mt-1 w-full rounded-lg border border-[#DADCE0] bg-white px-3.5 py-2 text-sm text-[#202124] placeholder:text-[#80868B] focus:border-[#1A73E8] focus:outline-none"
                     />
                   </div>
                 </div>
@@ -963,7 +962,7 @@ export function GoogleReviewsSection({
                 <div>
                   <label
                     htmlFor="review-quote"
-                    className="block text-xs font-medium text-ink-muted dark:text-[#C8C6BE]"
+                    className="block text-xs font-medium text-[#5F6368]"
                   >
                     Your review *
                   </label>
@@ -973,12 +972,12 @@ export function GoogleReviewsSection({
                     value={draftQuote}
                     onChange={(e) => setDraftQuote(e.target.value)}
                     placeholder="Share details of your project, communication, and results..."
-                    className="mt-1 w-full resize-none rounded-lg border border-ivory-border bg-ivory px-3.5 py-2.5 text-sm text-ink placeholder:text-ink-muted/60 focus:border-[#1A73E8] focus:outline-none dark:border-obsidian-border-strong dark:bg-obsidian dark:text-[#F5F4F0] dark:placeholder:text-[#7A7870]"
+                    className="mt-1 w-full resize-none rounded-lg border border-[#DADCE0] bg-white px-3.5 py-2.5 text-sm text-[#202124] placeholder:text-[#80868B] focus:border-[#1A73E8] focus:outline-none"
                   />
                 </div>
 
                 {formError && (
-                  <p className="text-xs font-medium text-[#D93025] dark:text-[#F28B82]">
+                  <p className="text-xs font-medium text-[#D93025]">
                     {formError}
                   </p>
                 )}
@@ -987,7 +986,7 @@ export function GoogleReviewsSection({
                   <button
                     type="button"
                     onClick={() => setIsComposerOpen(false)}
-                    className="min-h-10 cursor-pointer rounded-lg border border-ivory-border px-4 py-2 text-sm font-medium text-ink-muted transition-colors hover:text-ink dark:border-obsidian-border-strong dark:text-[#C8C6BE] dark:hover:text-[#F5F4F0]"
+                    className="min-h-10 cursor-pointer rounded-lg border border-[#DADCE0] bg-white px-4 py-2 text-sm font-medium text-[#5F6368] transition-colors hover:bg-[#F1F3F4] hover:text-[#202124]"
                   >
                     Cancel
                   </button>

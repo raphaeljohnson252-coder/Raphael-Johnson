@@ -366,6 +366,15 @@ export function AiVideosPage() {
                 >
                   Flyers &amp; Print
                 </RouteLink>
+                <span aria-hidden="true" className="mx-2 text-ink-muted dark:text-[#96948C]">
+                  |
+                </span>
+                <RouteLink
+                  to="/seo-geo-aeo"
+                  className="font-medium text-champagne-deep underline decoration-ivory-border underline-offset-4 transition-colors duration-150 hover:text-ink dark:text-champagne-light dark:decoration-obsidian-border-strong dark:hover:text-[#F5F4F0]"
+                >
+                  Google SEO, GEO &amp; AEO
+                </RouteLink>
                 {PUBLISHED_AI_VIDEO_INDUSTRIES.map((industry) => (
                   <span key={industry.slug} className="inline-flex items-center">
                     <span aria-hidden="true" className="mx-2 text-ink-muted dark:text-[#96948C]">

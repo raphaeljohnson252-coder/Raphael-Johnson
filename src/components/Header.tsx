@@ -19,6 +19,7 @@ function getServiceFromPath(path: RoutePath): ServiceSlug | undefined {
   if (path === '/websites') return 'websites';
   if (path === '/flyers-and-print') return 'flyers';
   if (path.startsWith('/ai-videos')) return 'videos';
+  if (path === '/seo-geo-aeo') return 'seo';
   return undefined;
 }
 
@@ -31,7 +32,8 @@ export function Header({ isDark, onToggleTheme }: HeaderProps) {
   const isServiceActive =
     path === '/websites' ||
     path === '/flyers-and-print' ||
-    path.startsWith('/ai-videos');
+    path.startsWith('/ai-videos') ||
+    path === '/seo-geo-aeo';
 
   const emailUrl = buildEmailUrl(getServiceFromPath(path));
 
@@ -124,7 +126,7 @@ export function Header({ isDark, onToggleTheme }: HeaderProps) {
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   exit={{ opacity: 0, y: 4, scale: 0.98 }}
                   transition={{ duration: 0.16, ease: [0.22, 1, 0.36, 1] }}
-                  className="absolute left-0 top-full w-52 pt-1.5"
+                  className="absolute left-0 top-full w-56 pt-1.5"
                 >
                   <div className="rounded-lg border border-ivory-border bg-white py-1.5 shadow-2xl dark:border-obsidian-border dark:bg-obsidian-surface">
                     <RouteLink
@@ -162,6 +164,18 @@ export function Header({ isDark, onToggleTheme }: HeaderProps) {
                       }`}
                     >
                       AI Videos
+                    </RouteLink>
+                    <RouteLink
+                      to="/seo-geo-aeo"
+                      role="menuitem"
+                      onClick={() => setServicesOpen(false)}
+                      className={`block px-4 py-2.5 text-sm whitespace-nowrap transition-colors duration-150 hover:bg-ivory-muted hover:text-champagne-deep dark:hover:bg-obsidian-elevated dark:hover:text-champagne-light ${
+                        path === '/seo-geo-aeo'
+                          ? 'font-semibold text-champagne-deep dark:text-champagne-light'
+                          : 'text-ink dark:text-[#E8E6DF]'
+                      }`}
+                    >
+                      Google SEO, GEO &amp; AEO
                     </RouteLink>
                   </div>
                 </motion.div>
@@ -278,6 +292,16 @@ export function Header({ isDark, onToggleTheme }: HeaderProps) {
                 }`}
               >
                 AI Videos
+              </RouteLink>
+              <RouteLink
+                to="/seo-geo-aeo"
+                className={`rounded-lg px-5 py-2.5 ${
+                  path === '/seo-geo-aeo'
+                    ? 'bg-ivory-muted text-champagne-deep dark:bg-obsidian-surface dark:text-champagne-light'
+                    : 'text-ink-muted dark:text-[#C8C6BE]'
+                }`}
+              >
+                Google SEO, GEO &amp; AEO
               </RouteLink>
               <RouteLink
                 to="/contact"

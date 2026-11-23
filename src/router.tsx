@@ -13,6 +13,7 @@ const VALID_ROUTES: RoutePath[] = [
   '/flyers-and-print',
   '/ai-videos',
   ...PUBLISHED_AI_VIDEO_INDUSTRIES.map((industry) => industry.path),
+  '/seo-geo-aeo',
   '/contact',
 ];
 

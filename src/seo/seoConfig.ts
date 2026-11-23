@@ -18,11 +18,11 @@ export interface RouteSeoMeta {
 
 export const ROUTE_SEO: Record<RoutePath, RouteSeoMeta> = {
   '/': {
-    title: 'Ewixstudio — Websites, Flyers & AI Videos Worldwide',
+    title: 'Ewixstudio — Websites, Flyers, AI Videos & Google SEO/GEO/AEO',
     description:
-      'Ewixstudio designs clear, fast websites, healthcare flyers and short AI promo videos for clinics, restaurants, real estate and online shops worldwide.',
+      'Ewixstudio designs clear, fast websites, healthcare flyers, short AI promo videos, and Google SEO, GEO & AEO ranking services for businesses worldwide.',
     keywords:
-      'Ewixstudio, Ewix Studio, websites for diabetes clinics, health business web design, medical flyers, AI promo videos, free homepage mockup',
+      'Ewixstudio, Ewix Studio, Google SEO, GEO, AEO, generative engine optimization, answer engine optimization, websites for health clinics, medical flyers, AI promo videos, free homepage mockup',
   },
   '/websites': {
     title: 'Websites for Health & Businesses — Ewixstudio',
@@ -83,12 +83,18 @@ export const ROUTE_SEO: Record<RoutePath, RouteSeoMeta> = {
     keywords:
       'Ewixstudio dental video, physio clinic video, patient welcome video',
   },
+  '/seo-geo-aeo': {
+    title: 'Google SEO, GEO & AEO Services — Ewixstudio',
+    description: `Rank higher on Google Search, Google Maps, and AI answer engines with Ewixstudio's Google SEO, GEO & AEO service starting from ${SERVICE_PRICES.seo}. Reach higher-value clients worldwide.`,
+    keywords:
+      'Google SEO, GEO, AEO, generative engine optimization, answer engine optimization, Google ranking service, AI search visibility, Ewixstudio SEO',
+  },
   '/contact': {
     title: 'Contact Ewixstudio — Free Homepage Mockup & Quote',
     description:
-      'Send Ewixstudio your website link or project idea for a free homepage mockup, flyer quote or AI video sample. Replies within 24 hours worldwide.',
+      'Send Ewixstudio your website link or project idea for a free homepage mockup, visibility audit, flyer quote or AI video sample. Replies within 24 hours worldwide.',
     keywords:
-      'Contact Ewixstudio, ewixstudio25@gmail.com, free website mockup, get a web design quote',
+      'Contact Ewixstudio, ewixstudio25@gmail.com, free website mockup, get a web design quote, SEO audit',
   },
 };
 
@@ -164,6 +170,7 @@ function buildRouteJsonLd(path: RoutePath, origin: string, meta: RouteSeoMeta) {
         '/websites': 'Websites',
         '/flyers-and-print': 'Flyers & Print',
         '/ai-videos': 'AI Videos',
+        '/seo-geo-aeo': 'Google SEO, GEO & AEO',
         '/contact': 'Contact',
       };
       breadcrumbItems.push({

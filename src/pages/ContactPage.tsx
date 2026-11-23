@@ -18,7 +18,13 @@ import {
 } from '../data/siteContent';
 import { useRouter } from '../router';
 
-const SERVICE_OPTIONS = ['Websites', 'Flyers & Print', 'AI Videos', 'Not sure'];
+const SERVICE_OPTIONS = [
+  'Websites',
+  'Flyers & Print',
+  'AI Videos',
+  'Google SEO, GEO & AEO',
+  'Not sure',
+];
 
 export function ContactPage() {
   const { preselectedService } = useRouter();

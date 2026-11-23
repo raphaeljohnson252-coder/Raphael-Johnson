@@ -60,6 +60,15 @@ const SERVICES = [
     button: 'See video work',
     to: '/ai-videos' as RoutePath,
   },
+  {
+    index: '04',
+    title: 'Google SEO, GEO & AEO',
+    description:
+      'Get visible to higher-value clients, rank on Google, and show up in AI search answers.',
+    price: `Starting from ${SERVICE_PRICES.seo}.`,
+    button: 'See SEO, GEO & AEO',
+    to: '/seo-geo-aeo' as RoutePath,
+  },
 ];
 
 const STEPS = [
@@ -89,6 +98,7 @@ const MARQUEE_ITEMS = [
   'Websites for health clinics',
   'Flyers & Print',
   'Plain-language AI Videos',
+  'Google SEO, GEO & AEO Ranking',
   'Working with clients worldwide',
   'Free homepage mockup',
 ];
@@ -138,7 +148,7 @@ export function HomePage() {
               />
               <ParallaxText>
                 <p className="max-w-xl text-base leading-relaxed text-ink-muted sm:text-lg dark:text-[#C8C6BE]">
-                  We design clear, mobile-friendly websites, flyers and short AI videos that help patients and customers find you, understand what you offer and get in touch.
+                  We design clear, mobile-friendly websites, flyers, short AI videos, and Google SEO, GEO &amp; AEO visibility systems that help higher-value clients find you on Google, trust what you offer, and get in touch.
                 </p>
               </ParallaxText>
               <ParallaxText>
@@ -200,11 +210,11 @@ export function HomePage() {
               What we make
             </h2>
             <p className="font-editorial text-lg italic text-ink-muted dark:text-[#C8C6BE]">
-              Three focused services, matched to one brand look
+              Four focused services built to get your business seen and booked
             </p>
           </RevealBlock>
 
-          <StaggerGrid className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-3">
+          <StaggerGrid className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {SERVICES.map((service) => (
               <StaggerItem key={service.title}>
                 <SpotlightCard className="flex h-full flex-col justify-between rounded-xl border border-ivory-border bg-ivory p-6 transition-colors duration-200 hover:border-champagne/70 sm:p-7 dark:border-obsidian-border dark:bg-obsidian dark:hover:border-champagne/60">
@@ -512,7 +522,7 @@ export function HomePage() {
                     Clear pricing, no surprises
                   </h2>
                   <p className="text-base leading-relaxed text-ink-muted dark:text-[#C8C6BE]">
-                    Starting from {SERVICE_PRICES.websites} for websites, Starting from {SERVICE_PRICES.flyers} for flyers, and Starting from {SERVICE_PRICES.videos} for AI videos. After your free mockup and a short chat, we send you a fixed quote for the whole project.
+                    Starting from {SERVICE_PRICES.websites} for websites, Starting from {SERVICE_PRICES.flyers} for flyers, Starting from {SERVICE_PRICES.videos} for AI videos, and Starting from {SERVICE_PRICES.seo} for Google SEO, GEO &amp; AEO. After your free mockup or visibility check, we send you a fixed quote for the whole project.
                   </p>
                   <p className="text-xs text-ink-muted dark:text-[#96948C]">
                     Prices in US dollars.

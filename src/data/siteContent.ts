@@ -12,9 +12,10 @@ export type RoutePath =
   | '/flyers-and-print'
   | '/ai-videos'
   | `/ai-videos/${AiVideoIndustrySlug}`
+  | '/seo-geo-aeo'
   | '/contact';
 
-export type ServiceSlug = 'websites' | 'flyers' | 'videos';
+export type ServiceSlug = 'websites' | 'flyers' | 'videos' | 'seo';
 
 export const BUSINESS_NAME = 'Ewixstudio';
 export const CONTACT_EMAIL = 'ewixstudio25@gmail.com';
@@ -25,6 +26,7 @@ export const SERVICE_PRICES: Record<ServiceSlug, string> = {
   websites: 'US$100',
   flyers: 'US$50',
   videos: 'US$50',
+  seo: 'US$100',
 };
 
 function withBase(relativePath: string): string {
@@ -38,6 +40,7 @@ export function buildEmailUrl(service?: ServiceSlug): string {
     websites: 'Website quote enquiry — Ewixstudio',
     flyers: 'Flyers & Print quote enquiry — Ewixstudio',
     videos: 'AI Video quote enquiry — Ewixstudio',
+    seo: 'Google SEO, GEO & AEO quote enquiry — Ewixstudio',
   };
 
   const bodyByService: Record<ServiceSlug, string> = {
@@ -47,6 +50,7 @@ export function buildEmailUrl(service?: ServiceSlug): string {
       "Hi Ewixstudio team, I saw your portfolio and I'd like a quote for flyers and print for my business.",
     videos:
       "Hi Ewixstudio team, I saw your portfolio and I'd like a quote for an AI video for my business.",
+    seo: "Hi Ewixstudio team, I'd like help with Google SEO, GEO & AEO so my business ranks higher and reaches more high-value clients.",
   };
 
   const subject = service
@@ -59,7 +63,11 @@ export function buildEmailUrl(service?: ServiceSlug): string {
   return `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 }
 
-export type ReviewServiceCategory = 'Websites' | 'AI Videos' | 'Flyers & Print';
+export type ReviewServiceCategory =
+  | 'Websites'
+  | 'AI Videos'
+  | 'Flyers & Print'
+  | 'SEO, GEO & AEO';
 export type ReviewRegion = 'Nigeria' | 'International';
 
 export interface TestimonialData {
@@ -241,13 +249,13 @@ export const HEALTH_TESTIMONIALS: TestimonialData[] = [
   {
     id: 'daniel-alvarez-miami',
     quote:
-      'Fast communication, honest US$ pricing, and zero fluff. Our clinic site loads noticeably faster on phones and the short patient welcome video on the homepage answers the three most common intake questions before anyone picks up the phone.',
+      'Fast communication, honest US$ pricing, and zero fluff. Ewixstudio handled our Google SEO, GEO, and AEO structure alongside our homepage rebuild—we now rank on the first page of Google for our core Miami preventive care searches and show up in AI search answers too.',
     clientName: 'Daniel Alvarez',
     role: 'Practice Administrator',
     business: 'Biscayne Preventive Health',
     specialty: 'Preventive Medicine',
-    service: 'Website & AI Video',
-    serviceCategory: 'Websites',
+    service: 'Google SEO, GEO & AEO',
+    serviceCategory: 'SEO, GEO & AEO',
     region: 'International',
     city: 'Miami, USA',
     rating: 5,
@@ -361,13 +369,13 @@ export const HEALTH_TESTIMONIALS: TestimonialData[] = [
   {
     id: 'sadiq-abdullahi-abuja',
     quote:
-      'Solid work on our online store landing page and 20-second skincare product promo clip. Both Nigerian and UK customers comment on how clean and trustworthy the brand looks now. Worth every dollar.',
+      'Ewixstudio handled our Google SEO, GEO, and AEO optimization plus a 20-second skincare promo clip. Our store started ranking for high-intent buyers in Abuja and the UK, bringing noticeably higher-value orders without extra ad spend. Worth every dollar.',
     clientName: 'Sadiq Abdullahi',
     role: 'Co-Founder',
     business: 'Noor Botanicals Skincare',
     specialty: 'Online Shop & Skincare',
-    service: 'Website & AI Video',
-    serviceCategory: 'Websites',
+    service: 'Google SEO, GEO & AEO',
+    serviceCategory: 'SEO, GEO & AEO',
     region: 'Nigeria',
     city: 'Abuja, Nigeria',
     rating: 5,
