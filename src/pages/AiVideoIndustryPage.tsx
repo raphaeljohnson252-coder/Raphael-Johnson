@@ -240,7 +240,7 @@ export function AiVideoIndustryPage({ industry }: AiVideoIndustryPageProps) {
                           poster={video.thumbnailSrc}
                           controls
                           playsInline
-                          preload="metadata"
+                          preload="none"
                           className="h-full w-full object-cover"
                         >
                           <track

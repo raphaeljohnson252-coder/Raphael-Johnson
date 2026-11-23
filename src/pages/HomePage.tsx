@@ -66,7 +66,7 @@ const SERVICES = [
     description:
       'Get visible to higher-value clients, rank on Google, and show up in AI search answers.',
     price: `Starting from ${SERVICE_PRICES.seo}.`,
-    button: 'See SEO, GEO & AEO',
+    button: 'Try live samples',
     to: '/seo-geo-aeo' as RoutePath,
   },
 ];
@@ -283,6 +283,8 @@ export function HomePage() {
                     <img
                       src={featuredWebsite.imageSrc}
                       alt={featuredWebsite.imageAlt}
+                      loading="lazy"
+                      decoding="async"
                       referrerPolicy="no-referrer"
                       className="h-full w-full object-cover object-top transition-transform duration-500 ease-out group-hover:scale-[1.035]"
                     />
@@ -324,6 +326,7 @@ export function HomePage() {
                             alt={flyer.imageAlt}
                             referrerPolicy="no-referrer"
                             loading="lazy"
+                            decoding="async"
                             className="h-full w-full object-cover object-top transition-transform duration-500 ease-out group-hover/flyer:scale-[1.04]"
                           />
                         </button>
@@ -369,9 +372,10 @@ export function HomePage() {
                     <div className="relative aspect-[16/9] w-full min-w-0 overflow-hidden rounded-lg border border-ivory-border bg-black dark:border-obsidian-border">
                       <video
                         src={featuredVideo.videoSrc}
+                        poster={featuredVideo.thumbnailSrc}
                         controls
                         playsInline
-                        preload="metadata"
+                        preload="none"
                         className="h-full w-full object-cover"
                       />
                     </div>
@@ -417,7 +421,7 @@ export function HomePage() {
       </section>
 
       {/* Selected Website Designs Gallery (all 8 uploaded screenshots) */}
-      <section className="border-t border-ivory-border bg-white dark:border-obsidian-border dark:bg-obsidian-surface">
+      <section className="cv-auto border-t border-ivory-border bg-white dark:border-obsidian-border dark:bg-obsidian-surface">
         <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
           <RevealBlock className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
             <div className="space-y-2">
@@ -450,6 +454,8 @@ export function HomePage() {
                       <img
                         src={project.imageSrc}
                         alt={project.imageAlt}
+                        loading="lazy"
+                        decoding="async"
                         referrerPolicy="no-referrer"
                         className="h-full w-full object-cover object-top transition-transform duration-500 ease-out group-hover:scale-[1.05]"
                       />
@@ -479,7 +485,7 @@ export function HomePage() {
       </section>
 
       {/* How it works */}
-      <section className="border-t border-ivory-border bg-ivory dark:border-obsidian-border dark:bg-obsidian">
+      <section className="cv-auto border-t border-ivory-border bg-ivory dark:border-obsidian-border dark:bg-obsidian">
         <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
           <RevealBlock className="flex flex-col justify-between gap-3 sm:flex-row sm:items-end">
             <h2 className="font-display text-2xl font-bold tracking-tight text-ink text-balance sm:text-3xl dark:text-[#F5F4F0]">

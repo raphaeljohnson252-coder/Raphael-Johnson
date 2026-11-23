@@ -141,6 +141,7 @@ export function AiVideosPage() {
                           alt={`${industry.industryName} sample thumbnail — ${leadVideo.title}`}
                           referrerPolicy="no-referrer"
                           loading="lazy"
+                          decoding="async"
                           className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover/preview:scale-[1.03]"
                         />
                         <span
@@ -269,7 +270,7 @@ export function AiVideosPage() {
                           poster={sample.thumbnailSrc}
                           controls
                           playsInline
-                          preload="metadata"
+                          preload="none"
                           className="h-full w-full object-cover"
                         >
                           <track

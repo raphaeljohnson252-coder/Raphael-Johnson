@@ -110,11 +110,17 @@
 .studio-marquee-track {
   display: flex;
   width: max-content;
+  will-change: transform;
   animation: studioMarquee 32s linear infinite;
 }
 
 .studio-marquee-track:hover {
   animation-play-state: paused;
+}
+
+.cv-auto {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 600px;
 }
 
 .luxury-shimmer-btn {
@@ -134,7 +140,7 @@
     transparent 100%
   );
   transform: translateX(-160%) skewX(-18deg);
-  transition: transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
   pointer-events: none;
 }
 

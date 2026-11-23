@@ -197,6 +197,7 @@ export function FlyersPage() {
                         alt={sample.imageAlt}
                         referrerPolicy="no-referrer"
                         loading="lazy"
+                        decoding="async"
                         className="h-full w-full object-cover object-top transition-transform duration-500 ease-out group-hover/preview:scale-[1.03]"
                       />
                       <span

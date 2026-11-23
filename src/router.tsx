@@ -6,6 +6,7 @@ import React, {
   useState,
 } from 'react';
 import { PUBLISHED_AI_VIDEO_INDUSTRIES, RoutePath } from './data/siteContent';
+import { prefetchRoute } from './routeLoaders';
 
 const VALID_ROUTES: RoutePath[] = [
   '/',
@@ -138,6 +139,8 @@ export function RouteLink({
   hash,
   service,
   onClick,
+  onMouseEnter,
+  onFocus,
   children,
   ...rest
 }: NavLinkProps) {
@@ -147,6 +150,14 @@ export function RouteLink({
   return (
     <a
       href={href}
+      onMouseEnter={(e) => {
+        prefetchRoute(to);
+        onMouseEnter?.(e);
+      }}
+      onFocus={(e) => {
+        prefetchRoute(to);
+        onFocus?.(e);
+      }}
       onClick={(e) => {
         if (
           e.metaKey ||

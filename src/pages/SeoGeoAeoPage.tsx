@@ -14,6 +14,8 @@ import {
   StaggerItem,
 } from '../components/LuxuryMotion';
 import { PageHeroBackdrop } from '../components/PageHeroBackdrop';
+import { SeoHeroLivePreview } from '../components/SeoHeroLivePreview';
+import { SeoRealTimeExamples } from '../components/SeoRealTimeExamples';
 import {
   buildEmailUrl,
   BUSINESS_NAME,
@@ -117,8 +119,8 @@ const QUESTIONS: FaqItem[] = [
 export function SeoGeoAeoPage() {
   const emailUrl = buildEmailUrl('seo');
 
-  const scrollToPillars = () => {
-    const el = document.getElementById('visibility-pillars');
+  const scrollToExamples = () => {
+    const el = document.getElementById('real-time-examples');
     if (el) {
       el.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
@@ -133,49 +135,81 @@ export function SeoGeoAeoPage() {
           intervalMs={5500}
         />
         <div className="relative mx-auto max-w-6xl px-4 pt-14 pb-18 sm:px-6 sm:pt-22 sm:pb-24 lg:px-8">
-          <HeroEntrance className="max-w-3xl space-y-6">
-            <ParallaxText>
-              <p className="font-mono-data text-xs tracking-wider text-champagne-deep uppercase dark:text-champagne-light">
-                {BUSINESS_NAME} &middot; Search &amp; AI Visibility
-              </p>
-            </ParallaxText>
-            <SplitHeadline
-              text="Google SEO, GEO & AEO that gets your business visible and ranked"
-              className="font-display text-3xl font-bold tracking-tight text-ink text-balance sm:text-5xl sm:leading-[1.1] dark:text-[#F5F4F0]"
-            />
-            <ParallaxText>
-              <p className="max-w-2xl text-base leading-relaxed text-ink-muted sm:text-lg dark:text-[#C8C6BE]">
-                We help businesses rank higher on Google and appear in AI-powered search answers—putting your brand in front of higher-value clients and decision-makers actively looking for what you offer.
-              </p>
-            </ParallaxText>
-            <ParallaxText>
-              <div className="flex flex-wrap items-center gap-3.5 pt-2">
-                <MagneticWrap>
-                  <RouteLink
-                    to="/contact"
-                    service="Google SEO, GEO & AEO"
-                    className="luxury-shimmer-btn inline-flex min-h-11 items-center justify-center rounded-lg bg-champagne px-6 py-3 text-sm font-semibold text-obsidian whitespace-nowrap shrink-0 transition-all duration-150 hover:bg-champagne-light active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-champagne"
+          <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-12 lg:gap-12">
+            <HeroEntrance className="space-y-6 lg:col-span-6">
+              <ParallaxText>
+                <p className="font-mono-data text-xs tracking-wider text-champagne-deep uppercase dark:text-champagne-light">
+                  {BUSINESS_NAME} &middot; Search &amp; AI Visibility
+                </p>
+              </ParallaxText>
+              <SplitHeadline
+                text="Google SEO, GEO & AEO that gets your business visible and ranked"
+                className="font-display text-3xl font-bold tracking-tight text-ink text-balance sm:text-5xl sm:leading-[1.08] dark:text-[#F5F4F0]"
+              />
+              <ParallaxText>
+                <p className="max-w-xl text-base leading-relaxed text-ink-muted sm:text-lg dark:text-[#C8C6BE]">
+                  We help businesses rank higher on Google and appear in AI-powered search answers—putting your brand in front of higher-value clients and decision-makers actively looking for what you offer.
+                </p>
+              </ParallaxText>
+              <ParallaxText>
+                <div className="flex flex-wrap items-center gap-3.5 pt-2">
+                  <MagneticWrap>
+                    <RouteLink
+                      to="/contact"
+                      service="Google SEO, GEO & AEO"
+                      className="luxury-shimmer-btn inline-flex min-h-11 items-center justify-center rounded-lg bg-champagne px-6 py-3 text-sm font-semibold text-obsidian whitespace-nowrap shrink-0 transition-all duration-150 hover:bg-champagne-light active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-champagne"
+                    >
+                      Get a free visibility check
+                    </RouteLink>
+                  </MagneticWrap>
+                  <button
+                    type="button"
+                    onClick={scrollToExamples}
+                    className="inline-flex min-h-11 items-center justify-center rounded-lg border border-ivory-border bg-white/90 px-6 py-3 text-sm font-medium text-ink whitespace-nowrap shrink-0 transition-all duration-200 hover:-translate-y-0.5 hover:border-champagne hover:text-champagne-deep focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-champagne dark:border-obsidian-border-strong dark:bg-obsidian-surface/85 dark:text-[#F5F4F0] dark:hover:border-champagne-light dark:hover:text-champagne-light"
                   >
-                    Get a free visibility check
-                  </RouteLink>
-                </MagneticWrap>
-                <button
-                  type="button"
-                  onClick={scrollToPillars}
-                  className="inline-flex min-h-11 items-center justify-center rounded-lg border border-ivory-border bg-white/90 px-6 py-3 text-sm font-medium text-ink whitespace-nowrap shrink-0 transition-all duration-200 hover:-translate-y-0.5 hover:border-champagne hover:text-champagne-deep focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-champagne dark:border-obsidian-border-strong dark:bg-obsidian-surface/85 dark:text-[#F5F4F0] dark:hover:border-champagne-light dark:hover:text-champagne-light"
-                >
-                  How SEO, GEO &amp; AEO work
-                </button>
-              </div>
-            </ParallaxText>
-          </HeroEntrance>
+                    See ranking examples
+                  </button>
+                </div>
+              </ParallaxText>
+            </HeroEntrance>
+
+            <HeroEntrance delay={0.14} parallaxOffset={-14} className="lg:col-span-6">
+              <SeoHeroLivePreview />
+            </HeroEntrance>
+          </div>
+        </div>
+      </section>
+
+      {/* Real-Time Client Examples Across Industries */}
+      <section
+        id="real-time-examples"
+        className="scroll-mt-20 border-t border-ivory-border bg-white dark:border-obsidian-border dark:bg-obsidian-surface"
+      >
+        <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
+          <RevealBlock className="flex flex-col justify-between gap-3 sm:flex-row sm:items-end">
+            <div className="space-y-2">
+              <p className="font-mono-data text-xs tracking-wider text-champagne-deep uppercase dark:text-champagne-light">
+                Before &amp; after search proof
+              </p>
+              <h2 className="font-display text-2xl font-bold tracking-tight text-ink text-balance sm:text-3xl dark:text-[#F5F4F0]">
+                Real-time ranking examples across industries
+              </h2>
+              <p className="max-w-2xl text-base text-ink-muted dark:text-[#C8C6BE]">
+                Inspect actual Google Search, Google Maps, AI Overview (GEO), and Featured Snippet (AEO) examples with exact ranking shifts, timelines, and technical deliverables.
+              </p>
+            </div>
+          </RevealBlock>
+
+          <RevealBlock delay={0.06} className="mt-10">
+            <SeoRealTimeExamples />
+          </RevealBlock>
         </div>
       </section>
 
       {/* Three Pillars: Google SEO, GEO & AEO */}
       <section
         id="visibility-pillars"
-        className="scroll-mt-20 border-t border-ivory-border bg-white dark:border-obsidian-border dark:bg-obsidian-surface"
+        className="scroll-mt-20 border-t border-ivory-border bg-ivory dark:border-obsidian-border dark:bg-obsidian"
       >
         <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
           <RevealBlock className="flex flex-col justify-between gap-3 sm:flex-row sm:items-end">
@@ -192,7 +226,7 @@ export function SeoGeoAeoPage() {
           <StaggerGrid className="mt-10 grid grid-cols-1 gap-6 lg:grid-cols-3">
             {PILLARS.map((pillar) => (
               <StaggerItem key={pillar.index}>
-                <SpotlightCard className="flex h-full flex-col justify-between rounded-xl border border-ivory-border bg-ivory p-6 transition-colors duration-200 hover:border-champagne/70 sm:p-7 dark:border-obsidian-border dark:bg-obsidian dark:hover:border-champagne/60">
+                <SpotlightCard className="flex h-full flex-col justify-between rounded-xl border border-ivory-border bg-white p-6 transition-colors duration-200 hover:border-champagne/70 sm:p-7 dark:border-obsidian-border dark:bg-obsidian-surface dark:hover:border-champagne/60">
                   <div className="relative z-10 space-y-3">
                     <div className="flex items-center justify-between gap-2">
                       <span className="font-mono-data text-xs text-champagne-deep dark:text-champagne-light">
@@ -231,7 +265,7 @@ export function SeoGeoAeoPage() {
       </section>
 
       {/* What's Included & Pricing */}
-      <section className="border-t border-ivory-border bg-ivory dark:border-obsidian-border dark:bg-obsidian">
+      <section className="border-t border-ivory-border bg-white dark:border-obsidian-border dark:bg-obsidian-surface">
         <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
           <RevealBlock>
             <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-12">
@@ -255,7 +289,7 @@ export function SeoGeoAeoPage() {
                 </ul>
               </div>
 
-              <SpotlightCard className="flex flex-col justify-between rounded-xl border border-ivory-border bg-white p-7 lg:col-span-5 dark:border-obsidian-border dark:bg-obsidian-surface">
+              <SpotlightCard className="flex flex-col justify-between rounded-xl border border-ivory-border bg-ivory p-7 lg:col-span-5 dark:border-obsidian-border dark:bg-obsidian">
                 <div className="relative z-10 space-y-4">
                   <h3 className="font-display text-lg font-semibold text-ink dark:text-[#F5F4F0]">
                     Pricing &amp; free visibility check
@@ -283,7 +317,7 @@ export function SeoGeoAeoPage() {
                   </MagneticWrap>
                   <a
                     href={emailUrl}
-                    className="inline-flex min-h-11 items-center justify-center gap-2 rounded-lg border border-ivory-border bg-ivory px-4 py-3 text-sm font-medium text-ink whitespace-nowrap transition-colors duration-150 hover:border-champagne hover:text-champagne-deep dark:border-obsidian-border-strong dark:bg-obsidian dark:text-[#F5F4F0] dark:hover:border-champagne-light dark:hover:text-champagne-light"
+                    className="inline-flex min-h-11 items-center justify-center gap-2 rounded-lg border border-ivory-border bg-white px-4 py-3 text-sm font-medium text-ink whitespace-nowrap transition-colors duration-150 hover:border-champagne hover:text-champagne-deep dark:border-obsidian-border-strong dark:bg-obsidian-surface dark:text-[#F5F4F0] dark:hover:border-champagne-light dark:hover:text-champagne-light"
                   >
                     <Mail className="h-4 w-4" aria-hidden="true" />
                     <span>Email us</span>
@@ -296,7 +330,7 @@ export function SeoGeoAeoPage() {
       </section>
 
       {/* Process */}
-      <section className="border-t border-ivory-border bg-white dark:border-obsidian-border dark:bg-obsidian-surface">
+      <section className="border-t border-ivory-border bg-ivory dark:border-obsidian-border dark:bg-obsidian">
         <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
           <RevealBlock className="flex flex-col justify-between gap-3 sm:flex-row sm:items-end">
             <h2 className="font-display text-2xl font-bold tracking-tight text-ink text-balance sm:text-3xl dark:text-[#F5F4F0]">
@@ -328,7 +362,7 @@ export function SeoGeoAeoPage() {
       </section>
 
       {/* Questions & Cross-links */}
-      <section className="border-t border-ivory-border bg-ivory dark:border-obsidian-border dark:bg-obsidian">
+      <section className="border-t border-ivory-border bg-white dark:border-obsidian-border dark:bg-obsidian-surface">
         <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
           <RevealBlock className="max-w-3xl">
             <h2 className="font-display text-2xl font-bold tracking-tight text-ink dark:text-[#F5F4F0]">

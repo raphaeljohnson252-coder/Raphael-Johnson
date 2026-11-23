@@ -256,6 +256,8 @@ export function WebsitesPage() {
                       <img
                         src={project.imageSrc}
                         alt={project.imageAlt}
+                        loading="lazy"
+                        decoding="async"
                         referrerPolicy="no-referrer"
                         className="h-full w-full object-cover object-top transition-transform duration-500 ease-out group-hover/preview:scale-[1.035]"
                       />
