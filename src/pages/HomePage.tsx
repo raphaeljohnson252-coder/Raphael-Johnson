@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ArrowRight, Maximize2 } from 'lucide-react';
+import { ArrowRight, Check, Maximize2, MessageCircle } from 'lucide-react';
 import homeBackdrop from '../assets/images/bg_home_obsidian_1794871449160.jpg';
 import diabetesBackdrop from '../assets/images/bg_industry_diabetes_clinic_1794878155242.jpg';
 import dentalBackdrop from '../assets/images/bg_industry_dental_wellness_1794878154339.jpg';
@@ -22,12 +22,14 @@ import { ProjectLightbox } from '../components/ProjectLightbox';
 import { GoogleReviewsSection } from '../components/GoogleReviewsSection';
 import { VideoLightbox } from '../components/VideoLightbox';
 import {
+  buildWhatsAppUrl,
   BUSINESS_NAME,
   FLYER_SAMPLES,
   FlyerSample,
   REAL_TESTIMONIAL,
   RoutePath,
   SERVICE_PRICES,
+  SERVICE_TURNAROUNDS,
   VIDEO_SAMPLES,
   VideoSample,
   WEBSITE_PROJECTS,
@@ -40,7 +42,8 @@ const SERVICES = [
     index: '01',
     title: 'Websites',
     description: 'Clear, fast sites with booking or ordering buttons.',
-    price: `Starting from ${SERVICE_PRICES.websites}.`,
+    price: `Min. ${SERVICE_PRICES.websites}`,
+    turnaround: SERVICE_TURNAROUNDS.websites,
     button: 'See website work',
     to: '/websites' as RoutePath,
   },
@@ -48,7 +51,8 @@ const SERVICES = [
     index: '02',
     title: 'Flyers & Print',
     description: 'Flyers, posters and handouts that match your brand.',
-    price: `Starting from ${SERVICE_PRICES.flyers}.`,
+    price: `Min. ${SERVICE_PRICES.flyers}`,
+    turnaround: SERVICE_TURNAROUNDS.flyers,
     button: 'See flyer work',
     to: '/flyers-and-print' as RoutePath,
   },
@@ -56,7 +60,8 @@ const SERVICES = [
     index: '03',
     title: 'AI Videos',
     description: 'Short explainers and social clips in plain language.',
-    price: `Starting from ${SERVICE_PRICES.videos}.`,
+    price: `Min. ${SERVICE_PRICES.videos}`,
+    turnaround: SERVICE_TURNAROUNDS.videos,
     button: 'See video work',
     to: '/ai-videos' as RoutePath,
   },
@@ -65,8 +70,9 @@ const SERVICES = [
     title: 'Google SEO, GEO & AEO',
     description:
       'Get visible to higher-value clients, rank on Google, and show up in AI search answers.',
-    price: `Starting from ${SERVICE_PRICES.seo}.`,
-    button: 'Try live samples',
+    price: `Min. ${SERVICE_PRICES.seo}`,
+    turnaround: SERVICE_TURNAROUNDS.seo,
+    button: 'See SEO examples',
     to: '/seo-geo-aeo' as RoutePath,
   },
 ];
@@ -229,10 +235,10 @@ export function HomePage() {
                       {service.description}
                     </p>
                     <p className="font-mono-data pt-1 text-sm font-medium text-ink dark:text-[#E6C86E]">
-                      {service.price}
+                      {service.price} &middot; {service.turnaround}
                     </p>
                     <p className="text-xs text-ink-muted dark:text-[#96948C]">
-                      Prices in US dollars.
+                      Minimum starting rate in US dollars.
                     </p>
                   </div>
 
@@ -286,7 +292,7 @@ export function HomePage() {
                       loading="lazy"
                       decoding="async"
                       referrerPolicy="no-referrer"
-                      className="h-full w-full object-cover object-top transition-transform duration-500 ease-out group-hover:scale-[1.035]"
+                      className="h-full w-full object-cover object-top transition-[object-position] duration-[3200ms] ease-in-out group-hover:object-bottom"
                     />
                   </div>
                   <div className="mt-5 flex w-full min-w-0 items-center justify-between gap-3 px-1">
@@ -457,7 +463,7 @@ export function HomePage() {
                         loading="lazy"
                         decoding="async"
                         referrerPolicy="no-referrer"
-                        className="h-full w-full object-cover object-top transition-transform duration-500 ease-out group-hover:scale-[1.05]"
+                        className="h-full w-full object-cover object-top transition-[object-position] duration-[3200ms] ease-in-out group-hover:object-bottom"
                       />
                       <div className="absolute right-2.5 bottom-2.5 flex h-8 w-8 items-center justify-center rounded-md border border-white/15 bg-black/80 text-champagne-light opacity-0 transition-opacity duration-200 group-hover:opacity-100">
                         <Maximize2 className="h-3.5 w-3.5" aria-hidden="true" />
@@ -516,49 +522,131 @@ export function HomePage() {
         </div>
       </section>
 
-      {/* How pricing works + Trust */}
-      <section className="border-t border-ivory-border bg-white dark:border-obsidian-border dark:bg-obsidian-surface">
+      {/* Clear Minimum Pricing & About Ewixstudio */}
+      <section className="cv-auto border-t border-ivory-border bg-white dark:border-obsidian-border dark:bg-obsidian-surface">
         <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
           <RevealBlock>
-            <div className="grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-12">
-              {/* How pricing works */}
-              <SpotlightCard className="flex flex-col justify-between rounded-xl border border-ivory-border bg-ivory p-7 sm:p-9 dark:border-obsidian-border dark:bg-obsidian">
-                <div className="relative z-10 space-y-4">
-                  <h2 className="font-display text-2xl font-bold tracking-tight text-ink text-balance dark:text-[#F5F4F0]">
-                    Clear pricing, no surprises
-                  </h2>
-                  <p className="text-base leading-relaxed text-ink-muted dark:text-[#C8C6BE]">
-                    Starting from {SERVICE_PRICES.websites} for websites, Starting from {SERVICE_PRICES.flyers} for flyers, Starting from {SERVICE_PRICES.videos} for AI videos, and Starting from {SERVICE_PRICES.seo} for Google SEO, GEO &amp; AEO. After your free mockup or visibility check, we send you a fixed quote for the whole project.
-                  </p>
-                  <p className="text-xs text-ink-muted dark:text-[#96948C]">
-                    Prices in US dollars.
-                  </p>
+            <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-10">
+              {/* Left 7 cols: Transparent Minimum Pricing Table */}
+              <SpotlightCard className="flex flex-col justify-between rounded-xl border border-ivory-border bg-ivory p-7 sm:p-9 lg:col-span-7 dark:border-obsidian-border dark:bg-obsidian">
+                <div className="relative z-10 space-y-5">
+                  <div className="space-y-2">
+                    <p className="font-mono-data text-xs tracking-wider text-champagne-deep uppercase dark:text-champagne-light">
+                      Transparent minimum prices
+                    </p>
+                    <h2 className="font-display text-2xl font-bold tracking-tight text-ink text-balance dark:text-[#F5F4F0]">
+                      Clear starting rates, fixed quotes up front
+                    </h2>
+                    <p className="text-sm leading-relaxed text-ink-muted dark:text-[#C8C6BE]">
+                      Every project starts with a free homepage mockup or visibility check—followed by a fixed quote in US dollars before any work begins.
+                    </p>
+                  </div>
+
+                  <div className="divide-y divide-ivory-border border-y border-ivory-border dark:divide-obsidian-border dark:border-obsidian-border">
+                    {[
+                      {
+                        label: 'Websites',
+                        price: SERVICE_PRICES.websites,
+                        turnaround: SERVICE_TURNAROUNDS.websites,
+                        note: 'Mobile-friendly design, booking/contact flow & speed setup',
+                      },
+                      {
+                        label: 'Flyers & Print',
+                        price: SERVICE_PRICES.flyers,
+                        turnaround: SERVICE_TURNAROUNDS.flyers,
+                        note: 'Print-ready PDF + social formats matched to your brand',
+                      },
+                      {
+                        label: 'AI Promo Videos',
+                        price: SERVICE_PRICES.videos,
+                        turnaround: SERVICE_TURNAROUNDS.videos,
+                        note: 'Captioned vertical & horizontal short clips in plain language',
+                      },
+                      {
+                        label: 'Google SEO, GEO & AEO',
+                        price: SERVICE_PRICES.seo,
+                        turnaround: SERVICE_TURNAROUNDS.seo,
+                        note: 'On-page SEO, structured schema, Maps & AI search readiness',
+                      },
+                    ].map((row) => (
+                      <div
+                        key={row.label}
+                        className="flex flex-col justify-between gap-1.5 py-3.5 sm:flex-row sm:items-center sm:gap-4"
+                      >
+                        <div className="min-w-0">
+                          <p className="font-display text-sm font-semibold text-ink dark:text-[#F5F4F0]">
+                            {row.label}
+                          </p>
+                          <p className="text-xs text-ink-muted dark:text-[#96948C]">
+                            {row.note}
+                          </p>
+                        </div>
+                        <div className="flex shrink-0 items-center gap-3 sm:flex-col sm:items-end sm:gap-0.5">
+                          <span className="font-mono-data text-sm font-semibold text-ink dark:text-champagne-light">
+                            From {row.price}
+                          </span>
+                          <span className="font-mono-data text-xs text-ink-muted dark:text-[#96948C]">
+                            {row.turnaround}
+                          </span>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
                 </div>
-                <div className="relative z-10 mt-8">
+
+                <div className="relative z-10 mt-7 flex flex-wrap items-center gap-3">
                   <MagneticWrap>
                     <RouteLink
                       to="/contact"
-                      className="luxury-shimmer-btn inline-flex min-h-11 items-center justify-center rounded-lg bg-champagne px-6 py-3 text-sm font-semibold text-obsidian whitespace-nowrap shrink-0 transition-all duration-150 hover:bg-champagne-light active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-champagne"
+                      className="luxury-shimmer-btn inline-flex min-h-11 items-center justify-center rounded-lg bg-champagne px-5 py-3 text-sm font-semibold text-obsidian whitespace-nowrap shrink-0 transition-all duration-150 hover:bg-champagne-light active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-champagne"
                     >
-                      Get a quote
+                      Get a fixed quote
                     </RouteLink>
                   </MagneticWrap>
+                  <a
+                    href={buildWhatsAppUrl()}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex min-h-11 items-center justify-center gap-2 rounded-lg border border-ivory-border bg-white px-5 py-3 text-sm font-medium text-ink whitespace-nowrap shrink-0 transition-colors duration-150 hover:border-champagne hover:text-champagne-deep dark:border-obsidian-border-strong dark:bg-obsidian-surface dark:text-[#F5F4F0] dark:hover:border-champagne-light dark:hover:text-champagne-light"
+                  >
+                    <MessageCircle className="h-4 w-4 shrink-0" aria-hidden="true" />
+                    <span>Ask on WhatsApp</span>
+                  </a>
                 </div>
               </SpotlightCard>
 
-              {/* Trust */}
-              <SpotlightCard className="flex flex-col justify-between rounded-xl border border-ivory-border bg-ivory p-7 sm:p-9 dark:border-obsidian-border dark:bg-obsidian">
+              {/* Right 5 cols: About Ewixstudio */}
+              <SpotlightCard className="flex flex-col justify-between rounded-xl border border-ivory-border bg-ivory p-7 sm:p-9 lg:col-span-5 dark:border-obsidian-border dark:bg-obsidian">
                 <div className="relative z-10 space-y-4">
-                  <h2 className="font-display text-2xl font-bold tracking-tight text-ink text-balance dark:text-[#F5F4F0]">
-                    Designed for clients worldwide with health advertising rules in mind
-                  </h2>
-                  <p className="text-base leading-relaxed text-ink-muted dark:text-[#C8C6BE]">
-                    We use wording you supply and approve, and avoid claims like &quot;cures&quot; or &quot;reverses&quot;. Please check final wording with your own compliance adviser.
+                  <p className="font-mono-data text-xs tracking-wider text-champagne-deep uppercase dark:text-champagne-light">
+                    About {BUSINESS_NAME}
                   </p>
+                  <h2 className="font-display text-2xl font-bold tracking-tight text-ink text-balance dark:text-[#F5F4F0]">
+                    Direct studio work—no agency layers or bloated retainers
+                  </h2>
+                  <p className="text-sm leading-relaxed text-ink-muted sm:text-base dark:text-[#C8C6BE]">
+                    {BUSINESS_NAME} is an independent creative studio helping clinics, health businesses, restaurants, real estate advisors, and online brands look credible online and get found on Google.
+                  </p>
+                  <ul className="space-y-2.5 border-t border-ivory-border pt-4 text-sm text-ink-muted dark:border-obsidian-border dark:text-[#C8C6BE]">
+                    {[
+                      'Direct communication via WhatsApp or email—no middlemen',
+                      'Free homepage preview or visibility check before you commit',
+                      'Written in wording you approve, respecting healthcare advertising standards',
+                      'Delivered remotely for clients worldwide with clear turnaround dates',
+                    ].map((point) => (
+                      <li key={point} className="flex items-start gap-2.5">
+                        <Check
+                          className="mt-0.5 h-4 w-4 shrink-0 text-champagne-deep dark:text-champagne-light"
+                          aria-hidden="true"
+                        />
+                        <span>{point}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
 
                 {REAL_TESTIMONIAL && (
-                  <blockquote className="relative z-10 mt-8 rounded-lg border border-ivory-border bg-white p-5 dark:border-obsidian-border dark:bg-obsidian-surface">
+                  <blockquote className="relative z-10 mt-6 rounded-lg border border-ivory-border bg-white p-5 dark:border-obsidian-border dark:bg-obsidian-surface">
                     <p className="text-base italic leading-relaxed text-ink dark:text-[#F5F4F0]">
                       &ldquo;{REAL_TESTIMONIAL.quote}&rdquo;
                     </p>

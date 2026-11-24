@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { motion } from 'motion/react';
 import { ArrowRight, Check, MapPin, Search, Sparkles } from 'lucide-react';
 import { RouteLink } from '../router';
 
@@ -178,14 +179,23 @@ export function SeoRealTimeExamples() {
                 role="tab"
                 aria-selected={isActive}
                 onClick={() => setCategory(item)}
-                className={`inline-flex min-h-9 cursor-pointer items-center gap-1.5 rounded-lg border px-3.5 py-1.5 text-xs font-medium whitespace-nowrap shrink-0 transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-champagne ${
+                className={`relative inline-flex min-h-9 cursor-pointer items-center gap-1.5 rounded-lg border px-3.5 py-1.5 text-xs font-medium whitespace-nowrap shrink-0 transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-champagne ${
                   isActive
-                    ? 'border-champagne bg-champagne font-semibold text-obsidian'
+                    ? 'border-champagne font-semibold text-obsidian'
                     : 'border-ivory-border bg-ivory text-ink-muted hover:border-champagne/60 hover:text-ink dark:border-obsidian-border dark:bg-obsidian dark:text-[#C8C6BE] dark:hover:text-[#F5F4F0]'
                 }`}
               >
-                <span>{item}</span>
-                <span className="font-mono-data opacity-75">({count})</span>
+                {isActive && (
+                  <motion.span
+                    layoutId="activeSeoExampleTab"
+                    transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
+                    className="absolute inset-0 rounded-[7px] bg-champagne"
+                  />
+                )}
+                <span className="relative z-10">{item}</span>
+                <span className="font-mono-data relative z-10 opacity-75">
+                  ({count})
+                </span>
               </button>
             );
           })}

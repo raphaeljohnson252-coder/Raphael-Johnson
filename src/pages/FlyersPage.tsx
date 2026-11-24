@@ -21,12 +21,13 @@ import {
   FLYER_SAMPLES,
   FlyerSample,
   SERVICE_PRICES,
+  SERVICE_TURNAROUNDS,
 } from '../data/siteContent';
 import { RouteLink } from '../router';
 
 const INCLUDED = [
-  'Print-ready files and a digital version for social media',
-  'Sizes such as A4, A5 and social posts: [confirm sizes]',
+  'Print-ready PDF files and digital versions sized for social media',
+  'Standard print formats (A4, A5, DL, tri-fold) plus social post cards',
   'Colours, fonts and logo matched to your brand',
   'Wording you supply and approve',
 ];
@@ -136,17 +137,21 @@ export function FlyersPage() {
                     Pricing &amp; turnaround
                   </h3>
                   <p className="text-base leading-relaxed text-ink-muted dark:text-[#C8C6BE]">
-                    Starting from{' '}
+                    Minimum starting price:{' '}
                     <span className="font-mono-data font-semibold text-ink dark:text-champagne-light">
                       {SERVICE_PRICES.flyers}
                     </span>
-                    . Every project is quoted after a free mockup and a short chat, so you only pay for what you need.
+                    . Every project is quoted clearly up front after a quick chat, so you only pay for what you need.
                   </p>
                   <p className="text-xs text-ink-muted dark:text-[#96948C]">
                     Prices in US dollars.
                   </p>
-                  <p className="text-sm font-medium text-ink-muted dark:text-[#96948C]">
-                    Turnaround: [time].
+                  <p className="text-sm font-medium text-ink dark:text-[#F5F4F0]">
+                    Turnaround:{' '}
+                    <span className="font-mono-data text-champagne-deep dark:text-champagne-light">
+                      {SERVICE_TURNAROUNDS.flyers}
+                    </span>
+                    .
                   </p>
                 </div>
                 <div className="relative z-10 mt-8">

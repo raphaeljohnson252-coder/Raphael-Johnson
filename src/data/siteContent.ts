@@ -22,6 +22,9 @@ export const CONTACT_EMAIL = 'ewixstudio25@gmail.com';
 export const EMAIL_HREF =
   'mailto:ewixstudio25@gmail.com?subject=Portfolio%20enquiry%20for%20Ewixstudio';
 
+export const WHATSAPP_NUMBER_DISPLAY = '+44 7782 293134';
+export const WHATSAPP_NUMBER_RAW = '447782293134';
+
 export const SERVICE_PRICES: Record<ServiceSlug, string> = {
   websites: 'US$100',
   flyers: 'US$50',
@@ -29,11 +32,43 @@ export const SERVICE_PRICES: Record<ServiceSlug, string> = {
   seo: 'US$100',
 };
 
+export const SERVICE_TURNAROUNDS: Record<ServiceSlug, string> = {
+  websites: '5–7 days',
+  flyers: '3–5 days',
+  videos: '2–5 days',
+  seo: '7–10 days',
+};
+
 function withBase(relativePath: string): string {
   const base = import.meta.env.BASE_URL || '/';
   const normalizedBase = base.endsWith('/') ? base : `${base}/`;
   return `${normalizedBase}${relativePath.replace(/^\/+/, '')}`;
 }
+
+export function buildWhatsAppUrl(
+  service?: ServiceSlug,
+  customMessage?: string
+): string {
+  const messageByService: Record<ServiceSlug, string> = {
+    websites:
+      "Hi Ewixstudio, I saw your portfolio and I'd like a quote for a website for my business.",
+    flyers:
+      "Hi Ewixstudio, I saw your portfolio and I'd like a quote for flyers & print for my business.",
+    videos:
+      "Hi Ewixstudio, I saw your portfolio and I'd like a quote for an AI promo video for my business.",
+    seo: "Hi Ewixstudio, I'd like help setting up Google SEO, GEO & AEO for my business website.",
+  };
+
+  const text =
+    customMessage?.trim() ||
+    (service
+      ? messageByService[service]
+      : "Hi Ewixstudio, I saw your portfolio and I'd like to discuss a project for my business.");
+
+  return `https://wa.me/${WHATSAPP_NUMBER_RAW}?text=${encodeURIComponent(text)}`;
+}
+
+export const WHATSAPP_HREF = buildWhatsAppUrl();
 
 export function buildEmailUrl(service?: ServiceSlug): string {
   const subjectByService: Record<ServiceSlug, string> = {

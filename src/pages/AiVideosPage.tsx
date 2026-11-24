@@ -20,6 +20,7 @@ import {
   MORE_VIDEO_SAMPLES,
   PUBLISHED_AI_VIDEO_INDUSTRIES,
   SERVICE_PRICES,
+  SERVICE_TURNAROUNDS,
   VIDEO_SAMPLES,
   VideoSample,
 } from '../data/siteContent';
@@ -211,17 +212,21 @@ export function AiVideosPage() {
                     Pricing &amp; turnaround
                   </h3>
                   <p className="text-base leading-relaxed text-ink-muted dark:text-[#C8C6BE]">
-                    Starting from{' '}
+                    Minimum starting price:{' '}
                     <span className="font-mono-data font-semibold text-ink dark:text-champagne-light">
                       {SERVICE_PRICES.videos}
                     </span>
-                    . Every project is quoted after a short chat, so you only pay for what you need.
+                    . Every video is quoted clearly up front after a short chat, so you only pay for what you need.
                   </p>
                   <p className="text-xs text-ink-muted dark:text-[#96948C]">
                     Prices in US dollars.
                   </p>
-                  <p className="text-sm font-medium text-ink-muted dark:text-[#96948C]">
-                    Turnaround: [time].
+                  <p className="text-sm font-medium text-ink dark:text-[#F5F4F0]">
+                    Turnaround:{' '}
+                    <span className="font-mono-data text-champagne-deep dark:text-champagne-light">
+                      {SERVICE_TURNAROUNDS.videos}
+                    </span>
+                    .
                   </p>
                 </div>
                 <div className="relative z-10 mt-8">

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Check, CheckCircle2, Copy, Mail } from 'lucide-react';
+import { Check, CheckCircle2, Copy, Mail, MessageCircle } from 'lucide-react';
 import contactBackdrop from '../assets/images/bg_contact_obsidian_1794871451107.jpg';
 import diabetesBackdrop from '../assets/images/bg_industry_diabetes_clinic_1794878155242.jpg';
 import homeBackdrop from '../assets/images/bg_home_obsidian_1794871449160.jpg';
@@ -12,9 +12,12 @@ import {
 } from '../components/LuxuryMotion';
 import { PageHeroBackdrop } from '../components/PageHeroBackdrop';
 import {
+  buildWhatsAppUrl,
   BUSINESS_NAME,
   CONTACT_EMAIL,
   EMAIL_HREF,
+  WHATSAPP_HREF,
+  WHATSAPP_NUMBER_DISPLAY,
 } from '../data/siteContent';
 import { useRouter } from '../router';
 
@@ -92,6 +95,11 @@ export function ContactPage() {
     return `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
   })();
 
+  const composedWhatsAppHref = buildWhatsAppUrl(
+    undefined,
+    `Hi ${BUSINESS_NAME}, here are my project details:\n\n${composedMessageText}`
+  );
+
   const handleCopyMessage = async () => {
     try {
       await navigator.clipboard.writeText(
@@ -131,22 +139,31 @@ export function ContactPage() {
               </ParallaxText>
 
               <ParallaxText>
-                <div className="flex flex-wrap items-center gap-3.5 pt-2">
+                <div className="flex flex-wrap items-center gap-3 pt-2">
                   <MagneticWrap>
                     <a
-                      href={EMAIL_HREF}
-                      className="luxury-shimmer-btn inline-flex min-h-11 items-center justify-center gap-2 rounded-lg bg-champagne px-6 py-3 text-sm font-semibold text-obsidian whitespace-nowrap shrink-0 transition-all duration-150 hover:bg-champagne-light active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-champagne"
+                      href={WHATSAPP_HREF}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="luxury-shimmer-btn inline-flex min-h-11 items-center justify-center gap-2 rounded-lg bg-champagne px-5 py-3 text-sm font-semibold text-obsidian whitespace-nowrap shrink-0 transition-all duration-150 hover:bg-champagne-light active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-champagne"
                     >
-                      <Mail className="h-4 w-4" aria-hidden="true" />
-                      <span>Email us ({CONTACT_EMAIL})</span>
+                      <MessageCircle className="h-4 w-4 shrink-0" aria-hidden="true" />
+                      <span>WhatsApp ({WHATSAPP_NUMBER_DISPLAY})</span>
                     </a>
                   </MagneticWrap>
+                  <a
+                    href={EMAIL_HREF}
+                    className="inline-flex min-h-11 items-center justify-center gap-2 rounded-lg border border-ivory-border bg-white/90 px-5 py-3 text-sm font-medium text-ink whitespace-nowrap shrink-0 transition-colors duration-150 hover:border-champagne hover:text-champagne-deep focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-champagne dark:border-obsidian-border-strong dark:bg-obsidian-surface/85 dark:text-[#F5F4F0] dark:hover:border-champagne-light dark:hover:text-champagne-light"
+                  >
+                    <Mail className="h-4 w-4 shrink-0" aria-hidden="true" />
+                    <span>{CONTACT_EMAIL}</span>
+                  </a>
                 </div>
               </ParallaxText>
 
               <ParallaxText>
                 <p className="pt-4 text-sm leading-relaxed text-ink-muted dark:text-[#96948C]">
-                  Partnering with diabetes clinics, health practices, and wellness brands globally. All consultations and mockups are handled directly via email, with responses within 24 hours.
+                  Working directly with clinics, health practices, and businesses worldwide. All enquiries, quotes, and free homepage mockups are handled directly via WhatsApp or email within 24 hours.
                 </p>
               </ParallaxText>
             </HeroEntrance>
@@ -164,14 +181,14 @@ export function ContactPage() {
                         />
                         <div className="space-y-2">
                           <h2 className="font-display text-xl font-semibold text-ink dark:text-[#F5F4F0]">
-                            Email ready for {BUSINESS_NAME}
+                            Message ready for {BUSINESS_NAME}
                           </h2>
                           <p className="text-base leading-relaxed text-ink-muted dark:text-[#C8C6BE]">
-                            Open your email app to send this straight to{' '}
+                            Send this directly on WhatsApp ({WHATSAPP_NUMBER_DISPLAY}), open your email app to send to{' '}
                             <span className="font-medium text-ink dark:text-champagne-light">
                               {CONTACT_EMAIL}
-                            </span>{' '}
-                            or copy the message below.
+                            </span>
+                            , or copy the message below.
                           </p>
                         </div>
                       </div>
@@ -216,13 +233,22 @@ export function ContactPage() {
                       <div className="flex flex-wrap items-center gap-3">
                         <MagneticWrap>
                           <a
-                            href={composedEmailHref}
-                            className="luxury-shimmer-btn inline-flex min-h-11 items-center justify-center gap-2 rounded-lg bg-champagne px-6 py-3 text-sm font-semibold text-obsidian whitespace-nowrap shrink-0 transition-all duration-150 hover:bg-champagne-light active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-champagne"
+                            href={composedWhatsAppHref}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="luxury-shimmer-btn inline-flex min-h-11 items-center justify-center gap-2 rounded-lg bg-champagne px-5 py-3 text-sm font-semibold text-obsidian whitespace-nowrap shrink-0 transition-all duration-150 hover:bg-champagne-light active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-champagne"
                           >
-                            <Mail className="h-4 w-4" aria-hidden="true" />
-                            <span>Send via Email</span>
+                            <MessageCircle className="h-4 w-4" aria-hidden="true" />
+                            <span>Send via WhatsApp</span>
                           </a>
                         </MagneticWrap>
+                        <a
+                          href={composedEmailHref}
+                          className="inline-flex min-h-11 items-center justify-center gap-2 rounded-lg border border-ivory-border bg-ivory px-5 py-3 text-sm font-medium text-ink whitespace-nowrap shrink-0 transition-colors duration-150 hover:border-champagne hover:text-champagne-deep dark:border-obsidian-border-strong dark:bg-obsidian dark:text-[#F5F4F0] dark:hover:border-champagne-light dark:hover:text-champagne-light"
+                        >
+                          <Mail className="h-4 w-4" aria-hidden="true" />
+                          <span>Send via Email</span>
+                        </a>
                         <button
                           type="button"
                           onClick={handleCopyMessage}
@@ -356,9 +382,9 @@ export function ContactPage() {
                         <MagneticWrap>
                           <button
                             type="submit"
-                            className="luxury-shimmer-btn inline-flex min-h-11 items-center justify-center rounded-lg bg-champagne px-6 py-3 text-sm font-semibold text-obsidian whitespace-nowrap transition-all duration-150 hover:bg-champagne-light active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-champagne"
+                            className="luxury-shimmer-btn inline-flex min-h-11 cursor-pointer items-center justify-center rounded-lg bg-champagne px-6 py-3 text-sm font-semibold text-obsidian whitespace-nowrap transition-all duration-150 hover:bg-champagne-light active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-champagne"
                           >
-                            Prepare email message
+                            Prepare message
                           </button>
                         </MagneticWrap>
                       </div>

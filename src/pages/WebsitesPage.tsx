@@ -21,6 +21,7 @@ import { ProjectLightbox } from '../components/ProjectLightbox';
 import {
   buildEmailUrl,
   SERVICE_PRICES,
+  SERVICE_TURNAROUNDS,
   WEBSITE_PROJECTS,
   WebsiteCategory,
   WebsiteProject,
@@ -161,17 +162,21 @@ export function WebsitesPage() {
                     Pricing &amp; turnaround
                   </h3>
                   <p className="text-base leading-relaxed text-ink-muted dark:text-[#C8C6BE]">
-                    Starting from{' '}
+                    Minimum starting price:{' '}
                     <span className="font-mono-data font-semibold text-ink dark:text-champagne-light">
                       {SERVICE_PRICES.websites}
                     </span>
-                    . Every project is quoted after a free mockup and a short chat, so you only pay for what you need.
+                    . Every project receives a fixed quote after a free homepage mockup and short chat, so you only pay for what you need.
                   </p>
                   <p className="text-xs text-ink-muted dark:text-[#96948C]">
                     Prices in US dollars.
                   </p>
-                  <p className="text-sm font-medium text-ink-muted dark:text-[#96948C]">
-                    Turnaround: [time].
+                  <p className="text-sm font-medium text-ink dark:text-[#F5F4F0]">
+                    Turnaround:{' '}
+                    <span className="font-mono-data text-champagne-deep dark:text-champagne-light">
+                      {SERVICE_TURNAROUNDS.websites}
+                    </span>
+                    .
                   </p>
                 </div>
                 <div className="relative z-10 mt-8">
@@ -259,7 +264,7 @@ export function WebsitesPage() {
                         loading="lazy"
                         decoding="async"
                         referrerPolicy="no-referrer"
-                        className="h-full w-full object-cover object-top transition-transform duration-500 ease-out group-hover/preview:scale-[1.035]"
+                        className="h-full w-full object-cover object-top transition-[object-position] duration-[3200ms] ease-in-out group-hover/preview:object-bottom"
                       />
                       <span className="absolute right-3 bottom-3 inline-flex items-center gap-1.5 rounded-md border border-white/15 bg-black/80 px-3 py-1.5 text-xs font-medium text-white backdrop-blur-sm transition-colors duration-150 group-hover/preview:border-champagne/70 group-hover/preview:text-champagne-light">
                         <Maximize2 className="h-3.5 w-3.5" aria-hidden="true" />

@@ -1,4 +1,4 @@
-import { Check, Mail } from 'lucide-react';
+import { Check, Mail, MessageCircle } from 'lucide-react';
 import websitesBackdrop from '../assets/images/bg_websites_obsidian_1794871448351.jpg';
 import homeBackdrop from '../assets/images/bg_home_obsidian_1794871449160.jpg';
 import contactBackdrop from '../assets/images/bg_contact_obsidian_1794871451107.jpg';
@@ -17,8 +17,10 @@ import { PageHeroBackdrop } from '../components/PageHeroBackdrop';
 import { SeoRealTimeExamples } from '../components/SeoRealTimeExamples';
 import {
   buildEmailUrl,
+  buildWhatsAppUrl,
   BUSINESS_NAME,
   SERVICE_PRICES,
+  SERVICE_TURNAROUNDS,
 } from '../data/siteContent';
 import { RouteLink } from '../router';
 
@@ -117,6 +119,7 @@ const QUESTIONS: FaqItem[] = [
 
 export function SeoGeoAeoPage() {
   const emailUrl = buildEmailUrl('seo');
+  const whatsappUrl = buildWhatsAppUrl('seo');
 
   const scrollToExamples = () => {
     const el = document.getElementById('setup-examples');
@@ -285,10 +288,10 @@ export function SeoGeoAeoPage() {
               <SpotlightCard className="flex flex-col justify-between rounded-xl border border-ivory-border bg-ivory p-7 lg:col-span-5 dark:border-obsidian-border dark:bg-obsidian">
                 <div className="relative z-10 space-y-4">
                   <h3 className="font-display text-lg font-semibold text-ink dark:text-[#F5F4F0]">
-                    Pricing &amp; free visibility check
+                    Pricing, turnaround &amp; free check
                   </h3>
                   <p className="text-base leading-relaxed text-ink-muted dark:text-[#C8C6BE]">
-                    Starting from{' '}
+                    Minimum starting price:{' '}
                     <span className="font-mono-data font-semibold text-ink dark:text-champagne-light">
                       {SERVICE_PRICES.seo}
                     </span>
@@ -297,16 +300,25 @@ export function SeoGeoAeoPage() {
                   <p className="text-xs text-ink-muted dark:text-[#96948C]">
                     Prices in US dollars.
                   </p>
+                  <p className="text-sm font-medium text-ink dark:text-[#F5F4F0]">
+                    Turnaround:{' '}
+                    <span className="font-mono-data text-champagne-deep dark:text-champagne-light">
+                      {SERVICE_TURNAROUNDS.seo}
+                    </span>
+                    .
+                  </p>
                 </div>
                 <div className="relative z-10 mt-8 flex flex-wrap items-center gap-3">
                   <MagneticWrap>
-                    <RouteLink
-                      to="/contact"
-                      service="Google SEO, GEO & AEO"
-                      className="luxury-shimmer-btn inline-flex min-h-11 items-center justify-center rounded-lg bg-champagne px-6 py-3 text-sm font-semibold text-obsidian whitespace-nowrap shrink-0 transition-all duration-150 hover:bg-champagne-light active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-champagne"
+                    <a
+                      href={whatsappUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="luxury-shimmer-btn inline-flex min-h-11 items-center justify-center gap-2 rounded-lg bg-champagne px-5 py-3 text-sm font-semibold text-obsidian whitespace-nowrap shrink-0 transition-all duration-150 hover:bg-champagne-light active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-champagne"
                     >
-                      Get a quote
-                    </RouteLink>
+                      <MessageCircle className="h-4 w-4" aria-hidden="true" />
+                      <span>WhatsApp us</span>
+                    </a>
                   </MagneticWrap>
                   <a
                     href={emailUrl}
